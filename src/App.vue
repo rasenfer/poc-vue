@@ -1,21 +1,18 @@
 <template>
   <div id="app">
-    <span>
-      <img class="logo" src="@/assets/logo.png" />
-    </span>
-    <span>
-      <router-link to="/counter">Counter</router-link>
-    </span>
-    <span>
-      <router-link to="/about">About</router-link>
-    </span>
+    <HeaderView />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import HeaderView from "@/views/HeaderView";
+
 export default {
-  name: "app"
+  name: "app",
+  components: {
+    HeaderView
+  }
 };
 </script>
 
