@@ -1,26 +1,21 @@
 <template>
   <div id="app">
-    <img width="25%" src="./assets/logo.png" />
-    <Counter :start="start" />
-    <About />
+    <span>
+      <img class="logo" src="@/assets/logo.png" />
+    </span>
+    <span>
+      <router-link to="/counter">Counter</router-link>
+    </span>
+    <span>
+      <router-link to="/about">About</router-link>
+    </span>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Counter from "./components/counter/Counter";
-import About from "./components/about/About";
-
 export default {
-  name: "App",
-  components: {
-    Counter,
-    About
-  },
-  data: function() {
-    return {
-      start: 10
-    };
-  }
+  name: "app"
 };
 </script>
 
@@ -29,8 +24,10 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+.logo {
+  width: 1rem;
+  height: 1rem;
 }
 </style>
