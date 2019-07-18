@@ -8,10 +8,8 @@ Vue.use(VueRouter);
 const routes = [
     { path: '/counter', component: Counter },
     { path: '/about', component: About },
-]
+];
 
-const router = new VueRouter({
+export default new VueRouter({
   routes
-})
-
-export default router;
+});
