@@ -1,17 +1,25 @@
 <template>
   <div id="app">
     <img width="25%" src="./assets/logo.png" />
+    <Counter :start="start" />
     <About />
   </div>
 </template>
 
 <script>
-import About from "./components/About/About";
+import Counter from "./components/counter/Counter";
+import About from "./components/about/About";
 
 export default {
   name: "App",
   components: {
+    Counter,
     About
+  },
+  data: function() {
+    return {
+      start: 10
+    };
   }
 };
 </script>

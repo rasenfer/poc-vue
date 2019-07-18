@@ -1,4 +1,4 @@
-<template src="./html/About.html" />
+<template src="./template/About.html" />
 
 <script src="./js/About.js" />
 

@@ -1,4 +1,7 @@
-.node_modules
+### node ###
+/node_modules/
+/dist/
+package-lock.json
 
 ### STS ###
 .apt_generated
@@ -25,4 +28,3 @@ build/
 
 ### VS Code ###
 .vscode/
-/node_modules/
