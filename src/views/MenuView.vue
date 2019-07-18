@@ -4,22 +4,14 @@
 
 <script>
 import Menu from "@/components/menu/Menu";
+import menuService from "@/services/MenuService"
 
 export default {
   name: "menuView",
   components: { Menu },
   data: function() {
     return {
-      links: [
-        {
-          name: "Counter",
-          path: "/counter"
-        },
-        {
-          name: "About",
-          path: "/about"
-        }
-      ]
+      ...menuService.getMenu()
     };
   }
 };
