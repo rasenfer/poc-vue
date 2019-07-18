@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="menu">
     <span>
       <img class="logo" src="@/assets/logo.png" />
     </span>
@@ -13,7 +13,7 @@
 import VueTypes from "vue-types";
 
 export default {
-  name: "headerComponent",
+  name: "menu",
   props: {
     links: VueTypes.arrayOf(
       VueTypes.shape({

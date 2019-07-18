@@ -1,13 +1,13 @@
 <template>
-  <Header :links="links"/>
+  <Menu :links="links"/>
 </template>
 
 <script>
-import Header from "@/components/header/Header";
+import Menu from "@/components/menu/Menu";
 
 export default {
-  name: "headerView",
-  components: { Header },
+  name: "menuView",
+  components: { Menu },
   data: function() {
     return {
       links: [
