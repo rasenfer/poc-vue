@@ -3,18 +3,23 @@
 </template>
 
 <script>
+import menuService from "@/services/MenuService";
 import Menu from "@/components/menu/Menu";
-import menuService from "@/services/MenuService"
 
 export default {
   name: "menuView",
   components: { Menu },
   data: function() {
     return {
-      ...menuService.getMenu()
+      links: menuService.getMenu()
     };
   }
 };
 </script>
 
-<style />
+<style scoped>
+.logo {
+  width: 1rem;
+  height: 1rem;
+}
+</style>
