@@ -1,17 +1,34 @@
 <template>
   <div id="app">
-    <MenuView />
-    <router-view></router-view>
+    <Header menuId="menu-view"/>
+    <div class="container-fluid">
+      <div class="row">
+        <Menu class="menu col-sm-2" id="menu-view" :links="links"/>
+        <router-view />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import MenuView from "@/views/MenuView";
+import menuService from "@/services/MenuService";
+
+import Header from "@/components/header/Header";
+import Menu from "@/components/menu/Menu";
+
+import logo from "@/assets/logo.png";
 
 export default {
   name: "app",
   components: {
-    MenuView
+    Menu,
+    Header
+  },
+  data: function() {
+    return {
+      logo,
+      links: menuService.getMenu()
+    };
   }
 };
 </script>
@@ -22,9 +39,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.logo {
+.header img {
   width: 1rem;
   height: 1rem;
+}
+.menu {
+  background-color: blue;
+  max-width: 250px;
+  height: 100%;
 }
 </style>

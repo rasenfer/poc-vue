@@ -1,5 +1,4 @@
 export default {
-  name: "counter",
   props: {
     start: Number
   },

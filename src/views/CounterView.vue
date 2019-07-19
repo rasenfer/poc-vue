@@ -6,7 +6,6 @@
 import Counter from "@/components/counter/Counter";
 
 export default {
-  name: "counterView",
   components: {
     Counter
   },

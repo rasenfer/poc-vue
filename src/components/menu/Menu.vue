@@ -1,11 +1,10 @@
 <template>
-  <div class="menu">
-    <span>
-      <img class="logo" src="@/assets/logo.png" />
-    </span>
-    <span v-for="link in links" :key="link.name">
-      <router-link :to="link.path">{{link.name}}</router-link>
-    </span>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav">
+      <li class="nav-item" v-for="link in links" :key="link.name">
+        <router-link class="nav-link" :to="link.path">{{link.name}}</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -13,7 +12,6 @@
 import VueTypes from "vue-types";
 
 export default {
-  name: "menu",
   props: {
     links: VueTypes.arrayOf(
       VueTypes.shape({
