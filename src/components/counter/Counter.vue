@@ -1,7 +1,7 @@
-<template src="./template/Counter.html" />
+<template src="./counter-template.html" />
 
-<script src="./js/Counter.js" />
+<script src="./counter-script.js" />
 
-<style scoped src="./css/Counter.css" />
+<style scoped lang="scss" src="./counter-style.scss" />
 
 

@@ -1,7 +1,7 @@
-<template src="./template/About.html" />
+<template src="./about-template.html" />
 
-<script src="./js/About.js" />
+<script src="./about-script.js" />
 
-<style scoped src="./css/About.css" />
+<style scoped lang="scss" src="./about-style.scss" />
 
 
