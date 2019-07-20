@@ -1,0 +1,31 @@
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
+
+  .container-fluid {
+    height: -webkit-fill-available;
+  }
+
+  .menu {
+    height: -webkit-fill-available;
+    background-color: #4444cc;
+    max-width: 250px;
+    height: -webkit-fill-available;
+    .nav-link {
+      color: #ffffff;
+    }
+  }
+  .content {
+    height: -webkit-fill-available;
+  }
+  .footer {
+    position: fixed;
+    float: right;
+    bottom: 0;
+    background-color: #cccccc;
+  }
+}

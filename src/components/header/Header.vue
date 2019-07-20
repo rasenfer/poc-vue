@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar navbar-light">
+  <div id="header" class="navbar navbar-light">
     <div class="navbar-brand">
       <img :src="logo" />
     </div>
@@ -7,8 +7,8 @@
       class="navbar-toggler"
       type="button"
       data-toggle="collapse"
-      :data-target="'#'+ menuId"
-      :aria-controls="menuId"
+      :data-target="'#'+ toggle"
+      :aria-controls="toggle"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
@@ -17,14 +17,6 @@
   </div>
 </template>
 
-<script>
-import VueTypes from "vue-types";
-export default {
-  props: {
-    menuId: VueTypes.string,
-    logo: VueTypes.string.isRequired
-  }
-};
-</script>
+<script src="./header-script.js" />
 
-<style />
+<style scoped lang="scss" src="./header-style.scss" />
