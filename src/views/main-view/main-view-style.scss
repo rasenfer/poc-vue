@@ -1,0 +1,46 @@
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  .container-fluid {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    overflow: hidden;
+
+    .header {
+      background-color: #ffffcc;
+    }
+
+    .body {
+      padding-bottom: 5rem;
+    }
+
+    .content {
+      background-color: #ccfccc;
+      overflow: auto;
+      flex-grow: 1;
+      height: calc(100vh - 5rem);
+    }
+
+    .menu {
+      background-color: #ccccff;
+      max-width: 250px;
+      overflow: auto;
+      height: calc(100vh - 5rem);
+
+      .nav-link {
+        color: #ffffff;
+      }
+    }
+
+    .footer {
+      height: 1.5rem;
+      position: fixed;
+      float: right;
+      bottom: 0;
+      background-color: #cccccc;
+    }
+  }
+}

@@ -1,11 +1,13 @@
 <template>
   <div>
-    <Header class="header" toggle="menu-view" :logo="logo" />
     <div class="container-fluid">
-      <div class="row content">
-        <Menu class="menu col-sm-2" id="menu-view" :links="links" />
+      <Header class="header row" toggle="menu-view" :logo="logo" />
+      <div class="row body">
+        <div id="menu-view" class="menu col-sm-2 collapse navbar-collapse">
+          <Menu :links="links" />
+        </div>
         <div class="content">
-          <slot class="content" />
+          <slot />
         </div>
       </div>
       <div class="row col-12 footer">foot</div>
@@ -13,6 +15,6 @@
   </div>
 </template>
 
-<script src="./js/MainView.js" />
+<script src="./main-view-script.js" />
 
-<style lang="scss" src="./css/MainView.scss" />
+<style lang="scss" src="./main-view-style.scss" />
