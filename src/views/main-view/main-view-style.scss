@@ -21,6 +21,7 @@
       background-color: #ccfccc;
       overflow: auto;
       flex-grow: 1;
+      min-height: calc(100vh - 5rem);
       height: calc(100vh - 5rem);
     }
 
@@ -28,6 +29,7 @@
       background-color: #ccccff;
       max-width: 250px;
       overflow: auto;
+      min-height: calc(100vh - 5rem);
       height: calc(100vh - 5rem);
 
       .nav-link {
