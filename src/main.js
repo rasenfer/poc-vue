@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+import "@/config/polyfill";
 import "@/config/bootstrap";
 
 import Vue from "vue";
