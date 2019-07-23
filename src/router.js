@@ -1,13 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Counter from '@/views/CounterView';
-import About from '@/views/AboutView';
+import {CounterView, AboutView} from '@/views';
 
 Vue.use(VueRouter);
 
 const routes = [
-    { path: '/counter', component: Counter },
-    { path: '/about', component: About },
+    { path: '/counter', component: CounterView },
+    { path: '/about', component: AboutView },
 ];
 
 export default new VueRouter({

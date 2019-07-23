@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Counter from "@/components/counter/Counter";
+import {Counter} from "@/components";
 
 export default {
   components: {

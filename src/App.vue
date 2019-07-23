@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MainView from "@/views/main-view/MainView";
+import {MainView} from '@/views';
 export default {
   name: "app",
   components: {

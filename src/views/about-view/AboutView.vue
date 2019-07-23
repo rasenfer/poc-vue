@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import About from "@/components/about/About";
+import {About} from "@/components";
 
 export default {
   components: {

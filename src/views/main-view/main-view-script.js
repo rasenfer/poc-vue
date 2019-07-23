@@ -1,8 +1,6 @@
 
-import menuService from "@/services/MenuService";
-
-import Header from "@/components/header/Header";
-import Menu from "@/components/menu/Menu";
+import {menuService} from "@/services";
+import {Header, Menu} from "@/components";
 
 import logo from "@/assets/logo.png";
 
