@@ -1,7 +1,6 @@
+import Vue from "vue";
 
 import endpoints from "@/config/endpoints";
-
-import Vue from "vue";
 
 Vue.mixin({
     data: function () {
