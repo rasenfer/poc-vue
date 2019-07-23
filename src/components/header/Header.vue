@@ -7,7 +7,7 @@
       class="navbar-toggler"
       type="button"
       data-toggle="collapse"
-      :data-target="'#'+ toggle"
+      :data-target="`#${toggle}`"
       :aria-controls="toggle"
       aria-expanded="false"
       aria-label="Toggle navigation"
@@ -17,6 +17,14 @@
   </div>
 </template>
 
-<script src="./header-script.js" />
+<script>
+import VueTypes from "vue-types";
+export default {
+  props: {
+    toggle: VueTypes.string,
+    logo: VueTypes.string.isRequired
+  }
+};
+</script>
 
 <style scoped lang="scss" src="./header-style.scss" />
