@@ -16,10 +16,13 @@
     "vue-types": "^1.5.7"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@vue/cli-plugin-babel": "^3.9.2",
     "@vue/cli-plugin-eslint": "3.9.2",
     "@vue/cli-service": "3.9.3",
     "babel-eslint": "^10.0.2",
+    "babel-plugin-lodash": "^3.3.4",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.3",
     "node-sass": "^4.12.0",
