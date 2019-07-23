@@ -1,14 +1,12 @@
-import "@/config/bootstrap";
-import "@/config/mixin-api";
-import "@/config/mixin-lodash";
+import "@/config/bootstrap-config";
+import "@/config/api-config";
+import "@/config/lodash-config";
 
 import Vue from "vue";
 import router from "@/router";
 import App from "@/App";
 
 Vue.config.productionTip = process.env.NODE_ENV == "production";
-
-window.lv = _.VERSION;
 
 new Vue({
   router,
