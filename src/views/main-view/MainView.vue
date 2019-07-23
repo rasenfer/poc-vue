@@ -10,7 +10,7 @@
           <slot />
         </div>
       </div>
-      <div class="row col-12 footer">foot</div>
+      <div class="row col-12 footer">{{version}} - {{env}} - {{endpoint}}</div>
     </div>
   </div>
 </template>

@@ -14,6 +14,8 @@ export default {
   data: function() {
     return {
       logo,
+      version: process.env.VUE_APP_VERSION,
+      env: process.env.NODE_ENV,
       links: menuService.getMenu()
     };
   }
