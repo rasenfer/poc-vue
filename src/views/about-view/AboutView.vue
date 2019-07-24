@@ -4,7 +4,7 @@
     <ul>
       <li>v{{version}}</li>
       <li>env: {{env}}</li>
-      <li>endpoint: {{endpointUrl}}</li>
+      <li>apiUrl: {{apiUrl}}</li>
     </ul>
     <h3>Installed CLI Plugins</h3>
     <ul>
@@ -79,7 +79,7 @@ export default {
     return {
       version: process.env.VUE_APP_VERSION,
       env: process.env.NODE_ENV,
-      endpointUrl: endpoint
+      apiUrl: api
     };
   }
 };

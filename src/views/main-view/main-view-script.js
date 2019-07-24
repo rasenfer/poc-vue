@@ -1,6 +1,6 @@
 
-import {menuService} from "@/services";
-import {Header, Menu} from "@/components";
+import { menuService, userService } from "@/services";
+import { Header, Menu } from "@/components";
 
 import logo from "@/assets/logo.png";
 
@@ -9,12 +9,16 @@ export default {
     Menu,
     Header
   },
-  data: function() {
+  data: function () {
     return {
       logo,
       version: process.env.VUE_APP_VERSION,
       env: process.env.NODE_ENV,
       links: menuService.getMenu()
     };
+  },
+  mounted() {
+    userService.getUser()
+      .then(response => (this.info = response))
   }
 };

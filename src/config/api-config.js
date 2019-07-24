@@ -1,3 +1,4 @@
-import endpoints from "@/config/endpoints";
+import apiUrls from "@/app/api-urls";
 
-window.endpoint = process.env.ENDPOINT || endpoints[process.env.NODE_ENV]
+window.api = process.env.API || apiUrls[process.env.NODE_ENV];
+window.localApi = apiUrls["local"];

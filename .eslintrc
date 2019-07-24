@@ -3,7 +3,11 @@
     "env": {
         "node": true
     },
-    "globals": { "_": false, "endpoint": false},
+    "globals": {
+        "_": false,
+        "api": false,
+        "localApi": false
+    },
     "extends": [
         "plugin:vue/essential",
         "eslint:recommended"
