@@ -76,9 +76,9 @@ function Api(basePath) {
     return {
         get: (uri, data = {}) => {
             if (Object.keys(data).length > 0) {
-                uri = `${basePath}${uri}?${qs(data)}`
+                uri = `${uri}?${qs(data)}`
             }
-            return axios.get(uri, {
+            return axios.get(`${basePath}${uri}`, {
                 headers: getHeaders(),
                 withCredentials: true
             })

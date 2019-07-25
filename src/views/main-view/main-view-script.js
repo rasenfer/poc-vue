@@ -18,7 +18,7 @@ export default {
     };
   },
   mounted() {
-    userService.getUser()
+    userService.get(1)
       .then(response => (this.info = response))
   }
 };
