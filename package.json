@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --port=8086",
-    "mock-serve": "vue-cli-service serve --port=8086 --mode local",
+    "local-serve": "vue-cli-service serve --port=8086 --mode local",
+    "test-serve": "vue-cli-service serve --port=8086 --mode test",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },

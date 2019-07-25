@@ -2,6 +2,5 @@ import axios from 'axios';
 
 export default {
     name: "userService",
-    getUser: () => axios
-        .get(`${localApi}/users/1`)
+    getUser: () => axios.get(`${mockApi}/users/1`)
 };

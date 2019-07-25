@@ -6,7 +6,8 @@
     "globals": {
         "_": false,
         "api": false,
-        "localApi": false
+        "testApi": false,
+        "mockApi": false
     },
     "extends": [
         "plugin:vue/essential",

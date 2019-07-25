@@ -1,5 +1,6 @@
 {
-    "local": "/api",
+    "test": "/api",
+    "local": "http://localhost:8080",
     "development": "http://development-api:8080/",
     "production": "http://production-api:8080/"
 }
