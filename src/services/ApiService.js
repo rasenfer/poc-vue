@@ -112,7 +112,7 @@ function Api(basePath) {
     }
 }
 
-window.api = {
+export default {
     ...new Api(process.env.API || apiUrls[process.env.NODE_ENV]),
     local: new Api(apiUrls["test"]),
     mock: new Api(apiUrls["local"]),

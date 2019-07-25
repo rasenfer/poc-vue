@@ -1,6 +1,6 @@
-import axios from 'axios';
+import api from '@/services/ApiService';
 
 export default {
     name: "userService",
-    getUser: () => axios.get(`${mockApi}/users/1`)
+    get: (id) => api.mock.get(`/people/${id}`)
 };
