@@ -78,33 +78,28 @@ function Api(basePath) {
             if (Object.keys(data).length > 0) {
                 uri = `${uri}?${qs(data)}`
             }
-            return axios.get(`${basePath}${uri}`, {
-                headers: getHeaders(),
-                withCredentials: true
+            return fetch(`${basePath}${uri}`, {
+                headers: getHeaders()
             })
         },
         post: (uri, data) => {
             return axios.post(`${basePath}${uri}`, data, {
-                headers: getHeaders(),
-                withCredentials: true
+                headers: getHeaders()
             })
         },
         put: (uri, data) => {
             return axios.put(`${basePath}${uri}`, data, {
-                headers: getHeaders(),
-                withCredentials: true
+                headers: getHeaders()
             })
         },
         delete: (uri) => {
             return axios.delete(`${basePath}${uri}`, {
-                headers: getHeaders(),
-                withCredentials: true
+                headers: getHeaders()
             })
         },
         upload: (uri, data) => {
             return fetch(`${basePath}${uri}`, {
                 headers: getHeaders(true),
-                cors: true,
                 method: 'POST',
                 body: data
             })
