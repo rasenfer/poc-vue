@@ -1,4 +1,4 @@
-import api from '@/services/ApiService';
+import {api} from '@/core';
 
 export default {
     name: "userService",
