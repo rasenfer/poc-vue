@@ -17,7 +17,7 @@ function getHeaders(multipart = false) {
         defaultHeaders = {}
     }
 
-    if (localStorage.token) {
+    if (localStorage && localStorage.token) {
         defaultHeaders = {
             'Authorization': `JWT ${localStorage.token}`,
             ...defaultHeaders
@@ -34,7 +34,7 @@ export function checkResponse(response) {
 
     // If not authorized then reset token
     // and redirect to login page
-    if (response.status === 401) {
+    if (localStorage && response.status === 401) {
         localStorage.removeItem('token')
         return Promise.reject(new Error('USER_ANONYMOUS'))
     }

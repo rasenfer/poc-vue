@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 import Vue from "vue";
 
 import "@/config/bootstrap-config";
@@ -7,8 +9,9 @@ import store from "@/config/vuex-config";
 
 import App from "@/app/App";
 
-Vue.config.devtools = process.env.NODE_ENV !== 'production';
-Vue.config.productionTip = process.env.NODE_ENV == "production";
+const production = process.env.NODE_ENV === 'production';
+Vue.config.devtools = !production;
+Vue.config.productionTip = production;
 
 const app = new Vue({
   router,
@@ -16,4 +19,6 @@ const app = new Vue({
   render: h => h(App)
 }).$mount("#app");
 
-window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = app.constructor;
+if(!production && window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {
+  window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = app.constructor;
+}
