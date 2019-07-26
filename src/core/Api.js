@@ -1,14 +1,14 @@
 import apiUrls from "@/app/api-urls";
-import axios from 'axios'
+import axios from 'axios';
 
 const DEFAULT_HEADERS = {
     'Content-Type': 'application/json'
-}
+};
 
 const validStatuses = [
     200, 201, 202, 203, 204,
     300, 301, 302, 303, 304
-]
+];
 
 function getHeaders(multipart = false) {
     let headers = DEFAULT_HEADERS
@@ -112,8 +112,6 @@ function Api(basePath) {
     }
 }
 
-export default {
-    ...new Api(process.env.API || apiUrls[process.env.NODE_ENV]),
-    local: new Api(apiUrls["test"]),
-    mock: new Api(apiUrls["local"]),
-};
+export default new Api(process.env.API || apiUrls[process.env.NODE_ENV]);
+export const local = new Api(apiUrls["test"]);
+export const mock = new Api(apiUrls["local"]);
