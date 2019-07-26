@@ -11,20 +11,25 @@ const validStatuses = [
 ]
 
 function getHeaders(multipart = false) {
-    let defaultHeaders = DEFAULT_HEADERS
+    let headers = DEFAULT_HEADERS
 
     if (multipart) {
-        defaultHeaders = {}
+        headers = {}
     }
 
     if (localStorage && localStorage.token) {
-        defaultHeaders = {
+        headers = {
             'Authorization': `JWT ${localStorage.token}`,
-            ...defaultHeaders
+            ...headers
         }
     }
+    
+    headers = {
+        ...headers,
+        "X-Requested-With": window.appName
+    }
 
-    return defaultHeaders
+    return headers
 }
 
 export function checkResponse(response) {

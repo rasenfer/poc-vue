@@ -6,12 +6,15 @@ import "@/config/bootstrap-config";
 import "@/config/lodash-config";
 import router from "@/config/router-config";
 import store from "@/config/vuex-config";
+const packageInfo = require("../package.json");
 
 import App from "@/app/App";
 
 const production = process.env.NODE_ENV === 'production';
 Vue.config.devtools = !production;
 Vue.config.productionTip = production;
+
+window.appName = packageInfo.name;
 
 const app = new Vue({
   router,
