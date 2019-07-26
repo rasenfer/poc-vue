@@ -6,11 +6,13 @@
         <div id="menu-view" class="menu col-sm-2 collapse navbar-collapse">
           <Menu :links="links" />
         </div>
-        <div class="content">
-          <slot />
+        <div class="page">
+          <div class="content withFooter">
+            <slot />
+          </div>
+          <div class="footer">v{{version}}{{env !== 'production' ? ' - env: ' + env : ''}}</div>
         </div>
       </div>
-      <div class="row col-12 footer">v{{version}}{{env != 'production' ? ' - env: ' + env : ''}}</div>
     </div>
   </div>
 </template>
