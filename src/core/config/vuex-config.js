@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import store from '@/store';
+import store from '@/core/Store';
 
 Vue.use(Vuex);
 Vue.config.devtools = process.env.NODE_ENV !== 'production';
