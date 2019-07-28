@@ -1,4 +1,5 @@
 import apiUrls from "@/app/api-urls";
+import interceptors from "@/core/axios-interceptors";
 import axios from 'axios';
 
 function isHandlerEnabled (config = {}) {
@@ -6,27 +7,24 @@ function isHandlerEnabled (config = {}) {
 }
 
 function requestHandler(request) {
-    if (isHandlerEnabled(request)) {
-        if (localStorage && localStorage.token) {
-            request.headers['Authorization'] = `Bearer ${localStorage.token}`
-        }
-        request.headers['X-Requested-With'] = window.appName
+    if (isHandlerEnabled(request.config)) {
+        interceptors.requestHandlers.forEach(interceptor => interceptor(request));
     }
     return request
 }
 
-function errorHandler(error) {
-    if (isHandlerEnabled(error.config)) {
-        // Handle errors
-    }
-    return Promise.reject({ ...error })
-}
-
-function successHandler (response) {
+function responseHandler (response) {
     if (isHandlerEnabled(response.config)) {
-        // Handle responses
+        interceptors.responseHandlers.forEach(interceptor => interceptor(response));
     }
     return response
+}
+
+function errorHandler(error) {
+    if (isHandlerEnabled(error.config)) {
+        interceptors.errorHandlers.forEach(interceptor => interceptor(error));
+    }
+    return Promise.reject({ ...error })
 }
 
 function queryString(params) {
@@ -48,7 +46,7 @@ class Api {
             request => requestHandler(request)
         );
         this.axiosInstance.interceptors.response.use(
-            response => successHandler(response),
+            response => responseHandler(response),
             error => errorHandler(error)
         );
     }
