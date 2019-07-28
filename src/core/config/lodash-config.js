@@ -1,1 +1,1 @@
-import "lodash";
+require("lodash");
