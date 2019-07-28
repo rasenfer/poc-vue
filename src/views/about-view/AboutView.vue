@@ -4,7 +4,7 @@
     <ul>
       <li>v{{version}}</li>
       <li>env: {{env}}</li>
-      <li>apiUrl: {{apiUrl}}</li>
+      <li>apiBasePath: {{apiBasePath}}</li>
     </ul>
     <h3>Installed CLI Plugins</h3>
     <ul>
@@ -74,12 +74,13 @@
 </template>
 
 <script>
+  import {api} from "@/core";
 export default {
   data: function() {
     return {
       version: process.env.VUE_APP_VERSION,
       env: process.env.NODE_ENV,
-      apiUrl: api
+      apiBasePath: api.basePath
     };
   }
 };
