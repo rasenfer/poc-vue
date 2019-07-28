@@ -1,29 +1,24 @@
-import store from "@/store"
+import Vue from "vue";
 
-export default {
-    ...store,
-    state: {
-        ...store.state,
-        entities: {}
-    },
-    getters: {
-        ...store.getters,
-        getEntities: (state) => state.entities,
-        getEntitiesByType: (state) => (type) => {
-            return state.entities[type] ? state.entities[type] : {}
+export default function (store) {
+    return {
+        ...store,
+        state: {
+            appName: Vue.config.appName,
+            apiRequest: {},
+            ...store.state
         },
-        getEntity: state => (type, id) => {
-            let entity = null;
-            if (state.entities[type]) {
-                entity = state.entities[type].find(entity => entity.id === id)
-            }
-            return entity;
-        }
-    },
-    mutations: {
-        ...store.mutations,
-        storeEntity: (state, { type, entity }) => {
-            state.entities[type] = {...state.entities[type], [entity.id]: entity};
+        getters: {
+            getApiRequest: (state) => (id) => {
+                return state.apiRequest[id];
+            },
+            ...store.getters
+        },
+        mutations: {
+            storeApiRequest: (state, { id, response }) => {
+                state.apiRequest[id] = response;
+            },
+            ...store.mutations
         }
     }
 }

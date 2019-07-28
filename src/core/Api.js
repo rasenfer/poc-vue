@@ -1,6 +1,7 @@
-import apiUrls from "@/app/api-urls";
+import Vue from "vue";
+import axios from "axios";
+
 import interceptors from "@/core/axios-interceptors";
-import axios from 'axios';
 
 function isHandlerEnabled (config = {}) {
     return !config.hasOwnProperty('handlerEnabled') || config.handlerEnabled;
@@ -36,37 +37,50 @@ function queryString(params) {
     )
 }
 
-class Api {
-    constructor(basePath) {
-        this.basePath = basePath;
-        this.axiosInstance = axios.create({
+function checkAxiosInstance(api, type) {
+    if(!api.axiosInstance) {
+        const apiUrls = Vue.config.apiUrls;
+        const basePath = type ? apiUrls[type] : apiUrls[process.env.API] || apiUrls[process.env.NODE_ENV];
+        const axiosInstance= axios.create({
             baseURL: basePath
         });
-        this.axiosInstance.interceptors.request.use(
+        axiosInstance.interceptors.request.use(
             request => requestHandler(request)
         );
-        this.axiosInstance.interceptors.response.use(
+        axiosInstance.interceptors.response.use(
             response => responseHandler(response),
             error => errorHandler(error)
         );
+        api.basePath = basePath;
+        api.axiosInstance = axiosInstance;
+    }
+}
+
+class Api {
+    constructor(type) {
+        this.type = type;
     }
     get(uri, data = {},) {
+        checkAxiosInstance(this);
         if (Object.keys(data).length > 0) {
             uri = `${uri}?${queryString(data)}`
         }
         return this.axiosInstance.get(uri)
     }
     post(uri, data) {
+        checkAxiosInstance(this);
         return this.axiosInstance.post(uri, data)
     }
     put(uri, data) {
+        checkAxiosInstance(this);
         return this.axiosInstance.put(uri, data)
     }
     delete(uri) {
+        checkAxiosInstance(this);
         return this.axiosInstance.delete(uri)
     }
 }
 
-export default new Api(process.env.API || apiUrls[process.env.NODE_ENV]);
-export const local = new Api(apiUrls["test"]);
-export const mock = new Api(apiUrls["local"]);
+export default new Api();
+export const local = new Api("test");
+export const mock = new Api("local");

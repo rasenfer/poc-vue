@@ -5,9 +5,11 @@
 </template>
 
 <script>
-import {MainView} from '@/views';
+import "./app-interceptors";
+import {MainView} from "@/views";
+import Vue from "vue";
 export default {
-  name: "app",
+  name: Vue.config.appName,
   components: {
     MainView
   }

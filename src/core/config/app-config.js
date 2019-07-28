@@ -1,6 +1,4 @@
-const packageInfo = require("../../../package.json");
-
-import "./pollyfill-config";
+import "./polyfill-config";
 import "./bootstrap-config";
 import "./lodash-config";
 import router from "./router-config";
@@ -8,16 +6,17 @@ import store from "./vuex-config";
 
 import Vue from "vue";
 
-export default function(App) {
+export default function(appName, App, appStore, appRoutes, apiUrls) {
   const production = process.env.NODE_ENV === 'production';
   Vue.config.devtools = !production;
   Vue.config.productionTip = production;
   
-  window.appName = packageInfo.name;
+  Vue.config.apiUrls = apiUrls;
+  Vue.config.appName = appName;
   
   const app = new Vue({
-    router,
-    store,
+    router: router(appRoutes),
+    store: store(appStore),
     render: h => h(App)
   }).$mount("#app");
   
