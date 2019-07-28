@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import "./app-interceptors";
 import {MainView} from "@/views";
 import Vue from "vue";
 export default {

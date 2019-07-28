@@ -1,6 +1,6 @@
 import config from "@/core/config/app-config";
 
-
+import "@/app/app-interceptors";
 import App from "@/app/App";
 import routes from "@/app/routes";
 import apiUrls from "@/app/api-urls";
