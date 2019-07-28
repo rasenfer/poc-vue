@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import store from '@/core/Store';
+import {store} from '@/core';
 
 export default function (appStore) {
   if(appStore) {

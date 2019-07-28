@@ -1,7 +1,7 @@
 import Vue from "vue";
 import axios from "axios";
 
-import interceptors from "@/core/axios-interceptors";
+import {axiosinterceptors} from "@/core";
 
 function isHandlerEnabled (config = {}) {
     return !config.hasOwnProperty('handlerEnabled') || config.handlerEnabled;
@@ -9,21 +9,21 @@ function isHandlerEnabled (config = {}) {
 
 function requestHandler(request) {
     if (isHandlerEnabled(request.config)) {
-        interceptors.requestHandlers.forEach(interceptor => interceptor(request));
+        axiosinterceptors.requestHandlers.forEach(interceptor => interceptor(request));
     }
     return request
 }
 
 function responseHandler (response) {
     if (isHandlerEnabled(response.config)) {
-        interceptors.responseHandlers.forEach(interceptor => interceptor(response));
+        axiosinterceptors.responseHandlers.forEach(interceptor => interceptor(response));
     }
     return response
 }
 
 function errorHandler(error) {
     if (isHandlerEnabled(error.config)) {
-        interceptors.errorHandlers.forEach(interceptor => interceptor(error));
+        axiosinterceptors.errorHandlers.forEach(interceptor => interceptor(error));
     }
     return Promise.reject({ ...error })
 }

@@ -1,4 +1,4 @@
-import interceptors from '@/core/axios-interceptors';
+import {axiosinterceptors} from '@/core';
 
 const responseHandler = function (response) {
     const data = response.data;
@@ -7,4 +7,4 @@ const responseHandler = function (response) {
     return response;
 }
 
-interceptors.responseHandlers.unshift(responseHandler);
+axiosinterceptors.responseHandlers.unshift(responseHandler);

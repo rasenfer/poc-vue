@@ -1,2 +1,3 @@
-export {default as api} from "./Api";
-export {default as store} from "./Store";
+export {default as api} from "./api/Api";
+export {default as axiosinterceptors} from "./api/axios-interceptors";
+export {default as store} from "./store/Store";
