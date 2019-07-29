@@ -3,7 +3,8 @@ import storeApiInterceptor from "./StoreApiInterceptor";
 
 export default {
     requestHandlers: [
-        apiInterceptor.requestHandler
+        apiInterceptor.requestHandler,
+        storeApiInterceptor.requestHandler
     ],
     responseHandlers: [
         storeApiInterceptor.responseHandler

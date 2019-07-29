@@ -1,10 +1,30 @@
 import Vue from "vue";
 
+function getApiId(config) {
+   return config.url
+      .replace(config.baseURL, "")
+      .split("?")[0]
+      .replace(new RegExp("/"), "-")
+      .replace(new RegExp("^-"), "");
+}
+
 export default {
-    responseHandler: function (response) {
-        const store = Vue.config.store;
-        const id = response.config.url.replace(response.config.baseURL, "");
-        store.commit("storeApiRequest", {id, response});
-        return response;
-    }
+  requestHandler: function(request) {
+    const store = Vue.config.store;
+    const id = getApiId(request);
+    store.commit("apiRequestProcessing", { id, request });
+    return request;
+  },
+  responseHandler: function(response) {
+    const store = Vue.config.store;
+    const id = getApiId(response.config);
+    store.commit("apiRequestDone", { id, response });
+    return response;
+  },
+  errorHandler: function(error) {
+    const store = Vue.config.store;
+    const id = getApiId(error.config);
+    store.commit("apiRequestError", { id, error });
+    return error;
+  }
 };
