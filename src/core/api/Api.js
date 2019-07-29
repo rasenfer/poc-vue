@@ -1,9 +1,9 @@
 import Vue from "vue";
 import axios from "axios";
 
-import {axiosinterceptors} from "@/core";
+import { axiosinterceptors } from "@/core";
 
-function isHandlerEnabled (config = {}) {
+function isHandlerEnabled(config = {}) {
     return !config.hasOwnProperty('handlerEnabled') || config.handlerEnabled;
 }
 
@@ -14,7 +14,7 @@ function requestHandler(request) {
     return request
 }
 
-function responseHandler (response) {
+function responseHandler(response) {
     if (isHandlerEnabled(response.config)) {
         axiosinterceptors.responseHandlers.forEach(interceptor => interceptor(response));
     }
@@ -38,10 +38,10 @@ function queryString(params) {
 }
 
 function checkAxiosInstance(api, type) {
-    if(!api.axiosInstance) {
+    if (!api.axiosInstance) {
         const apiUrls = Vue.config.apiUrls;
         const basePath = type ? apiUrls[type] : apiUrls[process.env.API] || apiUrls[process.env.NODE_ENV];
-        const axiosInstance= axios.create({
+        const axiosInstance = axios.create({
             baseURL: basePath
         });
         axiosInstance.interceptors.request.use(
@@ -60,7 +60,7 @@ class Api {
     constructor(type) {
         this.type = type;
     }
-    get(uri, data = {},) {
+    get(uri, data = {}, ) {
         checkAxiosInstance(this);
         if (Object.keys(data).length > 0) {
             uri = `${uri}?${queryString(data)}`

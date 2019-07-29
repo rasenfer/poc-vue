@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div v-if="loading">
-      loading... {{loading}}
-    </div>
+    <div v-if="loading">loading... {{ loading }}</div>
     <ul v-if="!loading">
-      <li v-for="person in people" :key="`person-${person.id}`">{{person.name}}</li>
+      <li v-for="person in people" :key="`person-${person.id}`">
+        {{ person.name }}
+      </li>
     </ul>
     <nav v-if="!loading && pages" aria-label="Page navigation example">
       <ul class="pagination">
@@ -12,7 +12,7 @@
           <a class="page-link" href="#">Previous</a>
         </li>
         <li class="page-item" v-for="page in pages" :key="`page-${page}`">
-          <a class="page-link" href="#">{{page}}</a>
+          <a class="page-link" href="#">{{ page }}</a>
         </li>
         <li class="page-item">
           <a class="page-link" href="#">Next</a>
@@ -36,7 +36,7 @@ export default {
   mounted() {
     peopleService.list().then(response => {
       this.loading = false;
-      const {count, results} = response.data;
+      const { count, results } = response.data;
       this.pages = Math.round(count / results.length);
       this.people = response.data.results;
     });
