@@ -1,3 +1,4 @@
+import Vue from "vue";
 export default {
   state: {
     path: "",
@@ -12,5 +13,11 @@ export default {
       state.params = route.params;
       state.fullPath = route.fullPath;
     }
+  },
+  actions: {
+    navigate({ commit, state }, to) {
+      commit("navigate", to);
+      Vue.config.router.push(to);
+    },
   }
 };

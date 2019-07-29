@@ -1,7 +1,7 @@
 <template>
   <ul class="navbar-nav">
     <li class="nav-item" v-for="link in links" :key="link.name">
-      <router-link class="nav-link" :to="link.path">{{link.name}}</router-link>
+      <a class="nav-link" @click="onClick(link.path)" href="#">{{link.name}}</a>
     </li>
   </ul>
 </template>
@@ -16,7 +16,8 @@ export default {
         name: VueTypes.string.isRequired,
         path: VueTypes.string.isRequired
       })
-    ).isRequired
+    ).isRequired,
+    onClick: VueTypes.func.isRequired
   }
 };
 </script>

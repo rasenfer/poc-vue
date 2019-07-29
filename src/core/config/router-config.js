@@ -8,10 +8,7 @@ export default function (routes) {
       routes
     });
 
-    router.beforeEach( ( to, from, next ) => {
-      Vue.config.store.commit( 'navigate', to );
-      next();
-    } );
+    Vue.config.router = router;
 
     return router;
   }
