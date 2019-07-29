@@ -3,7 +3,6 @@ const packageConf = require('./package.json');
 process.env.VUE_APP_VERSION = packageConf.version;
 
 module.exports = {
-    "publicPath": "./",
     pluginOptions: {
         "serve-api-mocks": {
             base: "/api",
@@ -21,6 +20,7 @@ module.exports = {
             ],
         },
     },
+
     chainWebpack: config => {
         // disable cache for prod only, remove the if to disable it everywhere
         // if (process.env.NODE_ENV === 'production') {
@@ -30,4 +30,8 @@ module.exports = {
         config.module.rule('tsx').uses.delete('cache-loader');
         // }
     },
+
+    publicPath: './',
+    assetsDir: 'assets',
+    runtimeCompiler: true
 }
