@@ -1,7 +1,7 @@
 <template>
   <ul class="navbar-nav">
     <li class="nav-item" v-for="link in links" :key="link.name">
-      <a class="nav-link" @click="onClick(link.path)" href="#">{{link.name}}</a>
+      <a class="nav-link" @click.prevent="onClick(link.path)" :href="`#${link.path}`">{{link.name}}</a>
     </li>
   </ul>
 </template>

@@ -6,7 +6,7 @@
         <div id="menu-view" class="menu withFooter col-sm-2 collapse navbar-collapse">
           <Menu :links="links" :onClick="navigate" />
         </div>
-        <div class="content withFooter">
+        <div class="content withFooter" :id="path">
           <router-view />
         </div>
       </div>
@@ -36,10 +36,17 @@ export default {
     };
   },
   beforeUpdate: function() {
-    console.log(this.$router);
+    if (this.$router.currentRoute.path != this.path) {
+      this.navigate(this.path);
+    }
   },
   methods: {
     ...mapActions(["navigate"])
+  },
+  computed: {
+    path: function() {
+      return this.$store.state.router.path;
+    }
   }
 };
 </script>
