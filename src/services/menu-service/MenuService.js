@@ -7,6 +7,10 @@ export default {
                 path: "/counter"
             },
             {
+                name: "People",
+                path: "/people"
+            },
+            {
                 name: "About",
                 path: "/about"
             }

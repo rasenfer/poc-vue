@@ -51,6 +51,11 @@
       background-color: #cccccc;
     }
 
+    .menu.collapsing + .content,
+    .menu.show + .content {
+      max-width: calc(100vw - 250px);
+    }
+
     .body + .footer {
       width: 100vw;
       position: fixed;
