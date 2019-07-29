@@ -1,7 +1,6 @@
 import "./polyfill-config";
 import "./bootstrap-config";
 import "./lodash-config";
-import "./vuetify-config";
 import router from "./router-config";
 import store from "./vuex-config";
 
