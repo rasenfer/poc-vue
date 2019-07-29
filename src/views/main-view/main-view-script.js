@@ -1,5 +1,5 @@
 
-import { menuService, userService } from "@/services";
+import { menuService } from "@/services";
 import { Header, Menu } from "@/components";
 
 import logo from "@/assets/logo.png";
@@ -16,9 +16,5 @@ export default {
       env: process.env.NODE_ENV,
       links: menuService.getMenu()
     };
-  },
-  mounted() {
-    userService.get(1)
-      .then(response => (this.info = response))
   }
 };
