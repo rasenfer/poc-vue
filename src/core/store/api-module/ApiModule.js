@@ -16,6 +16,9 @@ export default {
     },
     apiRequestError: (state, { id, error }) => {
       Vue.set(state, id, {...error, loading: false});
+    },
+    navigate: (state) => {
+      Object.keys(state).forEach(attribute => delete state[attribute]);
     }
   }
 };
