@@ -4,8 +4,8 @@ function getApiId(config) {
    return config.url
       .replace(config.baseURL, "")
       .split("?")[0]
-      .replace(new RegExp("/"), "-")
-      .replace(new RegExp("^-"), "");
+      .replace(new RegExp(/\//g), "-")
+      .replace(new RegExp(/^-/g), "");
 }
 
 export default {

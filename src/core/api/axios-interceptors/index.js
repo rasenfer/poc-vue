@@ -10,6 +10,6 @@ export default {
         storeApiInterceptor.responseHandler
     ],
     errorHandlers: [
-
+        storeApiInterceptor.errorHandler
     ]
 }

@@ -1,7 +1,13 @@
-import {CounterView, PeopleView, AboutView} from '@/views';
+import { CounterView, PeopleView, PersonView, AboutView } from "@/views";
 
 export default [
-  { path: '/counter', component: CounterView },
-  { path: '/about', component: AboutView },
-  { path: '/people', component: PeopleView },
+  { name: "counter", path: "/counter", component: CounterView },
+  { name: "about", path: "/about", component: AboutView },
+  { name: "people", path: "/people", component: PeopleView },
+  {
+    name: "person",
+    path: "/people/:id",
+    component: PersonView,
+    props: (route) => ({ id: Number(route.params.id) })
+  }
 ];

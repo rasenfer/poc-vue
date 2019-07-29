@@ -12,6 +12,11 @@
         <tr v-for="person in people" :key="`person-${person.id}`">
           <td>{{ person.id }}</td>
           <td>{{ person.name }}</td>
+          <td>
+            <router-link :to="{ name: 'person', params: { id: person.id } }"
+              >-></router-link
+            >
+          </td>
         </tr>
       </tbody>
     </table>
@@ -50,15 +55,17 @@ export default {
     }
   },
   mounted() {
-    console.log("mounted");
     this.list(this.currentPage);
   },
   computed: {
-    people() {
-      return this.$store.getters.getApiRequest("people").data.results;
+    peopleRequest: function() {
+      return this.$store.getters.getApiRequest("people");
     },
-    loading() {
-      return this.$store.getters.getApiRequest("people").loading;
+    people: function() {
+      return this.peopleRequest.data.results;
+    },
+    loading: function() {
+      return this.peopleRequest.loading;
     }
   }
 };
