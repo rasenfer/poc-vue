@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     peopleRequest: function() {
-      return this.$store.getters.getApiRequest(`people-${this.id}`);
+      return this.$store.getters.getEntity(`people-${this.id}`);
     },
     person: function() {
       return this.peopleRequest.data;
