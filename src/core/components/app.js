@@ -1,10 +1,11 @@
 import { mapActions } from "vuex";
 
 import Vue from "vue";
+import VueTypes from "vue-types";
 
 export default Vue.component("app", {
     props: {
-      MainView: Object
+      MainView: VueTypes.object.isRequired
     },
     render: function(render) {
       return render("div", {attrs: {id: Vue.config.appName, route: this.route}}, [render(this.MainView)]);
