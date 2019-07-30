@@ -7,7 +7,7 @@
           id="menu-view"
           class="menu withFooter col-sm-2 collapse navbar-collapse"
         >
-          <Menu :links="links" :onClick="navigate" />
+          <Menu :links="links" />
         </div>
         <div class="content withFooter">
           <router-view />
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 import { menuService } from "@/services";
 import { Header, Menu } from "@/components";
 
@@ -39,9 +38,6 @@ export default {
       env: process.env.NODE_ENV,
       links: menuService.getMenu()
     };
-  },
-  methods: {
-    ...mapActions(["navigate"])
   }
 };
 </script>

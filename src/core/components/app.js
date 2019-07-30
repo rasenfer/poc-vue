@@ -8,20 +8,17 @@ export default Vue.component("app", {
       MainView: VueTypes.object.isRequired
     },
     render: function(render) {
-      return render("div", {attrs: {id: Vue.config.appName, route: this.route}}, [render(this.MainView)]);
+      return render("div", {attrs: {id: Vue.config.appName, route: this.route.path}}, [render(this.MainView)]);
     },
     beforeUpdate: function() {
-      if (this.$router.currentRoute.path != this.route) {
-        this.navigate(this.route);
+      if (this.$router.currentRoute.path != this.route.path) {
+        this.$router.push({...this.route, params: {...this.route.params, restored: true}});
       }
-    },
-    methods: {
-      ...mapActions(["navigate"])
     },
     computed: {
       name: () => Vue.config.appName,
       route: function() {
-        return this.$store.state.router.path;
+        return this.$store.state.router;
       }
     }
   });

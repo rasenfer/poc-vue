@@ -10,6 +10,11 @@ export default function (routes) {
 
     Vue.config.router = router;
 
+    router.beforeEach( ( to, from, next ) => {
+      Vue.config.store.dispatch( 'navigate', to );
+      next();
+    } );
+
     return router;
   }
 }

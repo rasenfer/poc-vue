@@ -1,7 +1,7 @@
 import Vue from "vue";
 export default {
   state: {
-    nae: "",
+    name: "",
     path: "",
     query: {},
     params: {},
@@ -17,21 +17,10 @@ export default {
     }
   },
   actions: {
-    navigate({commit, state}, to) {
-      const router = Vue.config.router;
-      let navigate = false;
-      if((typeof to === 'string' || to instanceof String)) {
-        if(state.path !== to) {
-          navigate = true;
-        }
-      } else if(state.name !== to.name
-        && state.path !== to.path) {
-        navigate = true;
+    navigate({ commit, state }, to) {
+      if (!to.params.restored) {
+        commit("navigate", to);
       }
-      router.push(to);
-      if(navigate) {
-        commit("navigate", router.history.current);
-      }
-    },
+    }
   }
 };
