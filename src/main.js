@@ -1,11 +1,11 @@
-import config from "@/core/config/app-config";
+import {start} from "@/core";
 
 import "@/app/app-interceptors";
-import App from "@/app/App";
 import routes from "@/app/routes";
 import apiUrls from "@/app/api-urls";
 import store from "@/store";
+import {MainView} from "@/views";
 
 const packageInfo = require("../package.json");
 
-config(packageInfo.name, App, store, routes, apiUrls);
+start(packageInfo.name, MainView, store, routes, apiUrls);
