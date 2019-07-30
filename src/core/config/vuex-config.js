@@ -12,6 +12,7 @@ export default function (appStore) {
       ...store(appStore),
       strict: debug
     });
+
     return Vue.config.store
   }
 }

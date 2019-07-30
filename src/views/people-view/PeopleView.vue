@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     peopleRequest: function() {
-      return this.$store.getters.getApiRequest("people");
+      return this.$store.getters.getEntity("people");
     },
     people: function() {
       return this.peopleRequest.data.results;

@@ -1,5 +1,6 @@
 import Vue from "vue";
-import entities from "./api-module/ApiModule";
+import entities from "./entity-module/EntityModule";
+import apiRequest from "./api-module/ApiModule";
 import router from "./router-module/RouterModule";
 
 export default function(store) {
@@ -11,6 +12,7 @@ export default function(store) {
     },
     modules: {
       entities,
+      apiRequest,
       router,
       ...store.modules
     }
