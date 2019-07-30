@@ -21,18 +21,24 @@ export default {
     }
   },
   mutations: {
-    apiRequestProcessing: (state, { url, request }) => {
+    apiRequestProcessing: (state, { url, request, rootState }) => {
       Vue.set(state, getEntityId(url), {
         config: { ...request },
         loading: true,
         data: { id: null, results: [] }
       });
+      rootState.lastUpdate = new Date().getTime()
+      Vue.config.lastUpdate = rootState.lastUpdate;
     },
-    apiRequestDone: (state, { url, response }) => {
+    apiRequestDone: (state, { url, response, rootState }) => {
       Vue.set(state, getEntityId(url), { ...response, loading: false });
+      rootState.lastUpdate = new Date().getTime()
+      Vue.config.lastUpdate = rootState.lastUpdate;
     },
-    apiRequestError: (state, { url, error }) => {
+    apiRequestError: (state, { url, error, rootState }) => {
       Vue.set(state, getEntityId(url), { ...error, loading: false });
+      rootState.lastUpdate = new Date().getTime()
+      Vue.config.lastUpdate = rootState.lastUpdate;
     },
     navigate: (state) => {
       Object.keys(state).forEach((attribute) => delete state[attribute]);

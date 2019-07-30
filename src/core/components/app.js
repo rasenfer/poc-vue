@@ -12,10 +12,8 @@ export default Vue.component("app", {
       if (this.$router.currentRoute.path != this.route.path) {
         Vue.config.restoring = true;
         this.$router.push(this.route);
+        Vue.config.restoring = false;
       }
-    },
-    update: function() {
-      Vue.config.restoring = false;
     },
     computed: {
       name: () => Vue.config.appName,

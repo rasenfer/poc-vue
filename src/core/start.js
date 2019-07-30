@@ -14,6 +14,7 @@ export default function(appName, MainView, appStore, appRoutes, apiUrls) {
 
   Vue.config.apiUrls = apiUrls;
   Vue.config.appName = appName;
+  Vue.config.lastUpdate = new Date().getTime();
 
   const app = new Vue({
     router: router(appRoutes),

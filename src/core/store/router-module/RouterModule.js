@@ -9,18 +9,20 @@ export default {
     fullPath: ""
   },
   mutations: {
-    navigate: (state, route) => {
-      state.name = route.name;
-      state.path = route.path;
-      state.query = route.query;
-      state.params = route.params;
-      state.fullPath = route.fullPath;
+    navigate: (state, {to, rootState}) => {
+      state.name = to.name;
+      state.path = to.path;
+      state.query = to.query;
+      state.params = to.params;
+      state.fullPath = to.fullPath;
+      rootState.lastUpdate = new Date().getTime();
+      Vue.config.lastUpdate = rootState.lastUpdate;
     }
   },
   actions: {
-    navigate({ commit }, to) {
-      if (!Vue.config.restoring) {
-        commit("navigate", to);
+    navigate({ commit, rootState  }, to) {
+      if (!Vue.config.restoring && Vue.config.lastUpdate <= Vue.config.store.getters.getLastUpdate()) {
+        commit("navigate", {to, rootState});
       }
     }
   }

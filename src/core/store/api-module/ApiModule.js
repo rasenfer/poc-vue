@@ -14,28 +14,34 @@ export default {
     }
   },
   mutations: {
-    apiRequestProcessing: (state, { url, request }) => {
+    apiRequestProcessing: (state, { url, request, rootState }) => {
       Vue.set(state, url, { config: { ...request } });
+      rootState.lastUpdate = new Date().getTime()
+      Vue.config.lastUpdate = rootState.lastUpdate;
     },
-    apiRequestDone: (state, { url, response }) => {
+    apiRequestDone: (state, { url, response, rootState }) => {
       Vue.set(state, url, { ...response });
+      rootState.lastUpdate = new Date().getTime()
+      Vue.config.lastUpdate = rootState.lastUpdate;
     },
-    apiRequestError: (state, { url, error }) => {
+    apiRequestError: (state, { url, error, rootState }) => {
       Vue.set(state, url, { ...error });
+      rootState.lastUpdate = new Date().getTime()
+      Vue.config.lastUpdate = rootState.lastUpdate;
     },
     navigate: (state) => {
       Object.keys(state).forEach((attribute) => delete state[attribute]);
     }
   },
   actions: {
-    apiRequestProcessing: ({ commit }, payload) => {
-      commit("apiRequestProcessing", payload);
+    apiRequestProcessing: ({ commit, rootState }, payload) => {
+      commit("apiRequestProcessing", {...payload, rootState});
     },
-    apiRequestDone: ({ commit }, payload) => {
-      commit("apiRequestDone", payload);
+    apiRequestDone: ({ commit, rootState }, payload) => {
+      commit("apiRequestDone", {...payload, rootState});
     },
-    apiRequestError: ({ commit }, payload) => {
-      commit("apiRequestError", payload);
+    apiRequestError: ({ commit, rootState }, payload) => {
+      commit("apiRequestError", {...payload, rootState});
     }
   }
 };

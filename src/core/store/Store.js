@@ -8,7 +8,12 @@ export default function(store) {
     ...store,
     state: {
       appName: Vue.config.appName,
+      lastUpdate: new Date().getTime(),
       ...store.state
+    },
+    getters: {
+      ...store.getters,
+        getLastUpdate: (state) => () => state.lastUpdate
     },
     modules: {
       entities,
