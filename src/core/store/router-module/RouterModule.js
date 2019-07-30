@@ -1,4 +1,3 @@
-import Vue from "vue";
 export default {
   state: {
     name: "",
@@ -17,7 +16,7 @@ export default {
     }
   },
   actions: {
-    navigate({ commit, state }, to) {
+    navigate({ commit }, to) {
       if (!to.params.restored) {
         commit("navigate", to);
       }
