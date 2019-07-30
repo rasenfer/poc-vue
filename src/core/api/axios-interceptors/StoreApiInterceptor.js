@@ -12,19 +12,19 @@ export default {
   requestHandler: function(request) {
     const store = Vue.config.store;
     const id = getApiId(request);
-    store.commit("apiRequestProcessing", { id, request });
+    store.dispatch("apiRequestProcessing", { id, request });
     return request;
   },
   responseHandler: function(response) {
     const store = Vue.config.store;
     const id = getApiId(response.config);
-    store.commit("apiRequestDone", { id, response });
+    store.dispatch("apiRequestDone", { id, response });
     return response;
   },
   errorHandler: function(error) {
     const store = Vue.config.store;
     const id = getApiId(error.config);
-    store.commit("apiRequestError", { id, error });
+    store.dispatch("apiRequestError", { id, error });
     return error;
   }
 };

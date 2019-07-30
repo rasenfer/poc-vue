@@ -1,24 +1,45 @@
 import Vue from "vue";
 
 export default {
-  state: { },
+  state: {},
   getters: {
     getApiRequest: (state) => (id) => {
-      return state[id] || { loading: false, data: {id: null, results: [] } };
+      return state[id] || { loading: false, data: { id: null, results: [] } };
     }
   },
   mutations: {
     apiRequestProcessing: (state, { id, request }) => {
-      Vue.set(state, id, {config: {...request}, loading: true, data: {id: null, results: [] } });
+      Vue.set(state, id, {
+        config: { ...request },
+        loading: true,
+        data: { id: null, results: [] }
+      });
     },
     apiRequestDone: (state, { id, response }) => {
-      Vue.set(state, id, {...response, loading: false});
+      Vue.set(state, id, { ...response, loading: false });
     },
     apiRequestError: (state, { id, error }) => {
-      Vue.set(state, id, {...error, loading: false});
+      Vue.set(state, id, { ...error, loading: false });
     },
     navigate: (state) => {
-      Object.keys(state).forEach(attribute => delete state[attribute]);
+      Object.keys(state).forEach((attribute) => delete state[attribute]);
+    }
+  },
+  actions: {
+    apiRequestProcessing: ({ commit }, payload) => {
+      if (!Vue.config.restoring) {
+        commit("apiRequestProcessing", payload);
+      }
+    },
+    apiRequestDone: ({ commit }, payload) => {
+      if (!Vue.config.restoring) {
+        commit("apiRequestDone", payload);
+      }
+    },
+    apiRequestError: ({ commit }, payload) => {
+      if (!Vue.config.restoring) {
+        commit("apiRequestError", payload);
+      }
     }
   }
 };

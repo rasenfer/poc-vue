@@ -10,8 +10,12 @@ export default Vue.component("app", {
     },
     beforeUpdate: function() {
       if (this.$router.currentRoute.path != this.route.path) {
-        this.$router.push({...this.route, params: {...this.route.params, restored: true}});
+        Vue.config.restoring = true;
+        this.$router.push(this.route);
       }
+    },
+    update: function() {
+      Vue.config.restoring = false;
     },
     computed: {
       name: () => Vue.config.appName,
