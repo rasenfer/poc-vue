@@ -1,4 +1,5 @@
 import Vue from "vue";
+import lastUpdateMutation from "@/core/store/utils/LastUpdateMutation";
 
 export default {
   state: {
@@ -9,20 +10,22 @@ export default {
     fullPath: ""
   },
   mutations: {
-    navigate: (state, {to, rootState}) => {
+    navigate: (state, { to, rootState }) => {
       state.name = to.name;
       state.path = to.path;
       state.query = to.query;
       state.params = to.params;
       state.fullPath = to.fullPath;
-      rootState.lastUpdate = new Date().getTime();
-      Vue.config.lastUpdate = rootState.lastUpdate;
+      lastUpdateMutation(rootState);
     }
   },
   actions: {
-    navigate({ commit, rootState  }, to) {
-      if (!Vue.config.restoring && Vue.config.lastUpdate <= Vue.config.store.getters.getLastUpdate()) {
-        commit("navigate", {to, rootState});
+    navigate({ commit, rootState }, to) {
+      if (
+        !Vue.config.restoring &&
+        Vue.config.lastUpdate <= Vue.config.store.getters.getLastUpdate()
+      ) {
+        commit("navigate", { to, rootState });
       }
     }
   }

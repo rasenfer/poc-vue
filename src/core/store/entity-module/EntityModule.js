@@ -1,4 +1,5 @@
 import Vue from "vue";
+import lastUpdateMutation from "@/core/store/utils/LastUpdateMutation";
 
 function getEntityId(url) {
   return url
@@ -27,18 +28,15 @@ export default {
         loading: true,
         data: { id: null, results: [] }
       });
-      rootState.lastUpdate = new Date().getTime()
-      Vue.config.lastUpdate = rootState.lastUpdate;
+      lastUpdateMutation(rootState);
     },
     apiRequestDone: (state, { url, response, rootState }) => {
       Vue.set(state, getEntityId(url), { ...response, loading: false });
-      rootState.lastUpdate = new Date().getTime()
-      Vue.config.lastUpdate = rootState.lastUpdate;
+      lastUpdateMutation(rootState);
     },
     apiRequestError: (state, { url, error, rootState }) => {
       Vue.set(state, getEntityId(url), { ...error, loading: false });
-      rootState.lastUpdate = new Date().getTime()
-      Vue.config.lastUpdate = rootState.lastUpdate;
+      lastUpdateMutation(rootState);
     },
     navigate: (state) => {
       Object.keys(state).forEach((attribute) => delete state[attribute]);

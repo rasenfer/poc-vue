@@ -1,4 +1,5 @@
 import Vue from "vue";
+import lastUpdateMutation from "@/core/store/utils/LastUpdateMutation";
 
 export default {
   state: {},
@@ -16,18 +17,15 @@ export default {
   mutations: {
     apiRequestProcessing: (state, { url, request, rootState }) => {
       Vue.set(state, url, { config: { ...request } });
-      rootState.lastUpdate = new Date().getTime()
-      Vue.config.lastUpdate = rootState.lastUpdate;
+      lastUpdateMutation(rootState);
     },
     apiRequestDone: (state, { url, response, rootState }) => {
       Vue.set(state, url, { ...response });
-      rootState.lastUpdate = new Date().getTime()
-      Vue.config.lastUpdate = rootState.lastUpdate;
+      lastUpdateMutation(rootState);
     },
     apiRequestError: (state, { url, error, rootState }) => {
       Vue.set(state, url, { ...error });
-      rootState.lastUpdate = new Date().getTime()
-      Vue.config.lastUpdate = rootState.lastUpdate;
+      lastUpdateMutation(rootState);
     },
     navigate: (state) => {
       Object.keys(state).forEach((attribute) => delete state[attribute]);
@@ -35,13 +33,13 @@ export default {
   },
   actions: {
     apiRequestProcessing: ({ commit, rootState }, payload) => {
-      commit("apiRequestProcessing", {...payload, rootState});
+      commit("apiRequestProcessing", { ...payload, rootState });
     },
     apiRequestDone: ({ commit, rootState }, payload) => {
-      commit("apiRequestDone", {...payload, rootState});
+      commit("apiRequestDone", { ...payload, rootState });
     },
     apiRequestError: ({ commit, rootState }, payload) => {
-      commit("apiRequestError", {...payload, rootState});
+      commit("apiRequestError", { ...payload, rootState });
     }
   }
 };
