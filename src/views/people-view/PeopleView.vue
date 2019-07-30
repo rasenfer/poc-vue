@@ -26,7 +26,7 @@
           <a class="page-link" href="#">Previous</a>
         </li>
         <li class="page-item" v-for="page in pages" :key="`page-${page}`">
-          <a class="page-link" href="#" @click="list(page)">{{ page }}</a>
+          <a class="page-link" href="#" @click.prevent="list(page)">{{ page }}</a>
         </li>
         <li class="page-item">
           <a class="page-link" href="#">Next</a>
