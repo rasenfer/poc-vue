@@ -21,10 +21,7 @@ export default {
   },
   actions: {
     navigate({ commit, rootState }, to) {
-      if (
-        !Vue.config.restoring &&
-        Vue.config.lastUpdate <= Vue.config.store.getters.getLastUpdate()
-      ) {
+      if (!Vue.config.restoring) {
         commit("navigate", { to, rootState });
       }
     }
