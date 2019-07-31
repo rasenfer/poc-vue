@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="loading">loading... {{ loading }}</div>
-    <div v-if="!loading && character">
+    <div v-if="!loading">
       <div>Name: {{ character.name }}</div>
       <div>
         Aliases:

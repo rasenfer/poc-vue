@@ -8,7 +8,7 @@ export default {
       return (
         state[url] || {
           dummy: true,
-          loading: false,
+          loading: true,
           data: { id: null, results: [] }
         }
       );

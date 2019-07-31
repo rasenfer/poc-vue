@@ -14,8 +14,7 @@ export default {
     getEntity: (state) => (id) => {
       return (
         state[id] || {
-          dummy: true,
-          loading: false,
+          loading: true,
           data: { id: null, results: [] }
         }
       );

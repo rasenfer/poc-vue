@@ -11,36 +11,22 @@
       <tbody>
         <tr v-for="character in characters" :key="`character-${character.id}`">
           <td>{{ character.id }}</td>
+          <td>{{ character.name || character.aliases[0] }}</td>
           <td>
-            {{ character.name || character.aliases[0] }}
-          </td>
-          <td>
-            <router-link
-              :to="{ name: 'character', params: { id: character.id } }"
-            >
-              ->
-            </router-link>
+            <router-link :to="{ name: 'character', params: { id: character.id } }">-></router-link>
           </td>
         </tr>
       </tbody>
     </table>
-    <nav
-      v-if="!loading && pageMetadata && pageMetadata.totalPages > 1"
-      aria-label="Page navigation example"
-    >
+    <nav v-if="!loading> 1" aria-label="Page navigation example">
       <ul class="pagination">
         <li v-if="page !== 1" class="page-item">
           <router-link
             class="page-link"
             :to="{ path: '/characters', query: { page: page - 1 } }"
-          >
-            Prev
-          </router-link>
+          >Prev</router-link>
         </li>
-        <div
-          v-for="pageNumber in pageMetadata.totalPages"
-          :key="`page-${pageNumber}`"
-        >
+        <div v-for="pageNumber in pageMetadata.totalPages" :key="`page-${pageNumber}`">
           <li
             v-if="
               pageNumber == page ||
@@ -54,18 +40,14 @@
             <router-link
               class="page-link"
               :to="{ path: '/characters', query: { page: pageNumber } }"
-            >
-              {{ pageNumber }}
-            </router-link>
+            >{{ pageNumber }}</router-link>
           </li>
         </div>
         <li v-if="page !== pageMetadata.totalPages" class="page-item">
           <router-link
             class="page-link"
             :to="{ path: '/characters', query: { page: page + 1 } }"
-          >
-            Next
-          </router-link>
+          >Next</router-link>
         </li>
       </ul>
     </nav>
