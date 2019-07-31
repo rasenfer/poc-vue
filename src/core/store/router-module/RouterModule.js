@@ -3,11 +3,11 @@ import lastUpdateMutation from '@/core/store/utils/LastUpdateMutation';
 
 export default {
   state: {
-    name: "",
-    path: "",
+    name: '',
+    path: '',
     query: {},
     params: {},
-    fullPath: ""
+    fullPath: ''
   },
   mutations: {
     navigate: (state, { to, rootState }) => {
@@ -22,7 +22,7 @@ export default {
   actions: {
     navigate({ commit, rootState }, to) {
       if (!Vue.config.restoring) {
-        commit("navigate", { to, rootState });
+        commit('navigate', { to, rootState });
       }
     }
   }

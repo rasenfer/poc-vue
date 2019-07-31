@@ -15,6 +15,7 @@
     "parser": "babel-eslint"
   },
   "rules": {
+    "quotes": ["warn", "single", { "avoidEscape": true }],
     "vue/brace-style": "error",
     "vue/camelcase": "warning",
     "vue/comma-dangle": "warning",

@@ -3,9 +3,9 @@ import lastUpdateMutation from '@/core/store/utils/LastUpdateMutation';
 
 function getEntityId(url) {
   return url
-    .split("?")[0]
-    .replace(new RegExp(/\//g), "-")
-    .replace(new RegExp(/^-/g), "");
+    .split('?')[0]
+    .replace(new RegExp(/\//g), '-')
+    .replace(new RegExp(/^-/g), '');
 }
 
 export default {

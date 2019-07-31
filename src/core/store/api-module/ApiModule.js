@@ -33,13 +33,13 @@ export default {
   },
   actions: {
     apiRequestProcessing: ({ commit, rootState }, payload) => {
-      commit("apiRequestProcessing", { ...payload, rootState });
+      commit('apiRequestProcessing', { ...payload, rootState });
     },
     apiRequestDone: ({ commit, rootState }, payload) => {
-      commit("apiRequestDone", { ...payload, rootState });
+      commit('apiRequestDone', { ...payload, rootState });
     },
     apiRequestError: ({ commit, rootState }, payload) => {
-      commit("apiRequestError", { ...payload, rootState });
+      commit('apiRequestError', { ...payload, rootState });
     }
   }
 };

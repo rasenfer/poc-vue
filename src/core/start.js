@@ -29,7 +29,7 @@ export default function(appName, MainView, appStore, appRoutes, apiUrls) {
           default: () => render(MainView)
         }
       })
-  }).$mount("#app");
+  }).$mount('#app');
 
   if (!production && window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {
     window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = app.constructor;

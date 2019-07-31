@@ -5,12 +5,12 @@ import { axiosinterceptors } from '@/core/api';
 import storeCache from '@/core/api/StoreCache';
 
 function isHandlerEnabled(config = {}) {
-  return !config.hasOwnProperty("handlerEnabled") || config.handlerEnabled;
+  return !config.hasOwnProperty('handlerEnabled') || config.handlerEnabled;
 }
 
 function requestHandler(request) {
   if (isHandlerEnabled(request.config)) {
-    axiosinterceptors.requestHandlers.forEach((interceptor) =>
+    axiosinterceptors.requestHandlers.forEach(interceptor =>
       interceptor(request)
     );
   }
@@ -19,7 +19,7 @@ function requestHandler(request) {
 
 function responseHandler(response) {
   if (isHandlerEnabled(response.config)) {
-    axiosinterceptors.responseHandlers.forEach((interceptor) =>
+    axiosinterceptors.responseHandlers.forEach(interceptor =>
       interceptor(response)
     );
   }
@@ -28,17 +28,15 @@ function responseHandler(response) {
 
 function errorHandler(error) {
   if (isHandlerEnabled(error.config)) {
-    axiosinterceptors.errorHandlers.forEach((interceptor) =>
-      interceptor(error)
-    );
+    axiosinterceptors.errorHandlers.forEach(interceptor => interceptor(error));
   }
   return Promise.reject({ ...error });
 }
 
 function queryString(params) {
   return Object.keys(params)
-    .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
-    .join("&");
+    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+    .join('&');
 }
 
 function checkAxiosInstance(api) {
@@ -50,12 +48,10 @@ function checkAxiosInstance(api) {
     const axiosInstance = axios.create({
       baseURL: basePath
     });
-    axiosInstance.interceptors.request.use((request) =>
-      requestHandler(request)
-    );
+    axiosInstance.interceptors.request.use(request => requestHandler(request));
     axiosInstance.interceptors.response.use(
-      (response) => responseHandler(response),
-      (error) => errorHandler(error)
+      response => responseHandler(response),
+      error => errorHandler(error)
     );
     api.basePath = basePath;
     api.axiosInstance = axiosInstance;

@@ -4,7 +4,7 @@ process.env.VUE_APP_VERSION = packageConf.version;
 
 module.exports = {
     pluginOptions: {
-        "serve-api-mocks": apiMock,
+        'serve-api-mocks': apiMock,
     },
     publicPath: './',
     assetsDir: 'assets'

@@ -72,7 +72,7 @@ export default {
   },
   computed: {
     charactersRequest: function() {
-      return this.$store.getters.getEntity(`characters`);
+      return this.$store.getters.getEntity('characters');
     },
     loading: function() {
       return this.charactersRequest.loading;

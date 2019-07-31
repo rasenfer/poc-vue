@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import VueTypes from 'vue-types';
 
-export default Vue.component("app", {
+export default Vue.component('app', {
   props: {
     MainView: VueTypes.object.isRequired
   },
   render: function (render) {
-    return render("div", { attrs: { id: Vue.config.appName, route: this.route.path } }, [render(this.MainView)]);
+    return render('div', { attrs: { id: Vue.config.appName, route: this.route.path } }, [render(this.MainView)]);
   },
   beforeUpdate: function () {
     if (Vue.config.devtools && this.$router.currentRoute.path != this.route.path) {

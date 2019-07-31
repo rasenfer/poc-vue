@@ -10,10 +10,10 @@ export default {
     },
     actions: {
         countIncrement({ commit }) {
-            commit("countIncrement")
+            commit('countIncrement')
         },
         countDecrement({ commit }) {
-            commit("countDecrement")
+            commit('countDecrement')
         }
     }
 }

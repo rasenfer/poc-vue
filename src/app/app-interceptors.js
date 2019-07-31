@@ -8,7 +8,7 @@ const responseHandler = function(response) {
   const data = response.data;
   if (Array.isArray(data)) {
     data.forEach((entry) => {
-      const url = entry.url.split("/");
+      const url = entry.url.split('/');
       entry.id = url[url.length - 1];
     });
 
@@ -30,7 +30,7 @@ const responseHandler = function(response) {
       }
     }
   } else {
-    const url = data.url.split("/");
+    const url = data.url.split('/');
     data.id = url[url.length - 1];
   }
   return response;
