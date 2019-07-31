@@ -26,7 +26,7 @@ export default {
   },
   watch: {
     id: function(id) {
-      charactersService.get(value);
+      charactersService.get(id);
     }
   },
   computed: {
