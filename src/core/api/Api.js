@@ -41,11 +41,11 @@ function queryString(params) {
     .join("&");
 }
 
-function checkAxiosInstance(api, type) {
+function checkAxiosInstance(api) {
   if (!api.axiosInstance) {
     const apiUrls = Vue.config.apiUrls;
-    const basePath = type
-      ? apiUrls[type]
+    const basePath = api.type
+      ? apiUrls[api.type]
       : apiUrls[process.env.API] || apiUrls[process.env.NODE_ENV];
     const axiosInstance = axios.create({
       baseURL: basePath

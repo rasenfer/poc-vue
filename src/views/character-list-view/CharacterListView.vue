@@ -11,41 +11,58 @@
       <tbody>
         <tr v-for="character in characters" :key="`character-${character.id}`">
           <td>{{ character.id }}</td>
-          <td>{{ character.name }}</td>
           <td>
-            <router-link :to="{ name: 'character', params: { id: character.id } }">
+            {{ character.name || character.aliases[0] }}
+          </td>
+          <td>
+            <router-link
+              :to="{ name: 'character', params: { id: character.id } }"
+            >
               ->
             </router-link>
           </td>
         </tr>
       </tbody>
     </table>
-    <nav v-if="!loading && pages" aria-label="Page navigation example">
+    <nav
+      v-if="!loading && pageMetadata && pageMetadata.totalPages > 1"
+      aria-label="Page navigation example"
+    >
       <ul class="pagination">
         <li v-if="page !== 1" class="page-item">
           <router-link
             class="page-link"
-            :to="{ name: 'characters', query: { page: page - 1 } }"
+            :to="{ path: '/characters', query: { page: page - 1 } }"
           >
-            Previous
+            Prev
           </router-link>
         </li>
-        <li
-          class="page-item"
-          v-for="pageNumber in pages"
+        <div
+          v-for="pageNumber in pageMetadata.totalPages"
           :key="`page-${pageNumber}`"
         >
-          <router-link
-            class="page-link"
-            :to="{ name: 'characters', query: { page: pageNumber } }"
+          <li
+            v-if="
+              pageNumber == page ||
+                (page - 5 < 0 && pageNumber < 10) ||
+                (page + 5 > pageMetadata.totalPages && pageNumber > pageMetadata.totalPages - 9) ||
+                (pageNumber < page && pageNumber > page - 5) ||
+                (pageNumber > page && pageNumber < page + 5)
+            "
+            class="page-item"
           >
-            {{ pageNumber }}
-          </router-link>
-        </li>
-        <li v-if="page !== totalPages" class="page-item">
+            <router-link
+              class="page-link"
+              :to="{ path: '/characters', query: { page: pageNumber } }"
+            >
+              {{ pageNumber }}
+            </router-link>
+          </li>
+        </div>
+        <li v-if="page !== pageMetadata.totalPages" class="page-item">
           <router-link
             class="page-link"
-            :to="{ name: 'characters', query: { page: page + 1 } }"
+            :to="{ path: '/characters', query: { page: page + 1 } }"
           >
             Next
           </router-link>
@@ -63,34 +80,26 @@ export default {
   props: {
     page: VueTypes.number.def(1)
   },
-  data: function() {
-    return {
-      pages: 0,
-      totalPages: 0
-    };
-  },
   mounted() {
-    charactersService.list({ page: this.page })
+    charactersService.list({ page: this.page });
   },
   watch: {
-    page: function(page) {
-      charactersService.list({ page: this.page })
-    },
-    charactersRequest: function(response) {
-      const { count } = response.data;
-      this.totalPages = count;
-      this.pages = Math.round(count / 10);
+    page(page) {
+      charactersService.list({ page });
     }
   },
   computed: {
     charactersRequest: function() {
-      return this.$store.getters.getEntity("people");
+      return this.$store.getters.getEntity(`characters`);
     },
-    characters: function() {
-      return this.charactersRequest.data.results;
-    },
-    loading: function() {
+    loading() {
       return this.charactersRequest.loading;
+    },
+    characters() {
+      return this.charactersRequest.data.content;
+    },
+    pageMetadata() {
+      return this.charactersRequest.data.pageMetadata;
     }
   }
 };

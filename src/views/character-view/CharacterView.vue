@@ -1,8 +1,14 @@
 <template>
   <div>
     <div v-if="loading">loading... {{ loading }}</div>
-    <div v-if="!loading">
-      {{ character.name }}
+    <div v-if="!loading && character">
+      <div>Name: {{ character.name }}</div>
+      <div>
+        Aliases:
+        <ul v-for="(alias, index) in character.aliases" :key="`alias-${index}`">
+          <li>{{ alias }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -20,13 +26,13 @@ export default {
   },
   computed: {
     charactersRequest: function() {
-      return this.$store.getters.getEntity(`people-${this.id}`);
-    },
-    character: function() {
-      return this.charactersRequest.data;
+      return this.$store.getters.getEntity(`characters-${this.id}`);
     },
     loading: function() {
       return this.charactersRequest.loading;
+    },
+    character: function() {
+      return this.charactersRequest.data;
     }
   }
 };
