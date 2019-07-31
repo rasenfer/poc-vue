@@ -24,6 +24,11 @@ export default {
   mounted() {
     charactersService.get(this.id);
   },
+  watch: {
+    id(id) {
+      charactersService.get(id);
+    }
+  },
   computed: {
     charactersRequest: function() {
       return this.$store.getters.getEntity(`characters-${this.id}`);
