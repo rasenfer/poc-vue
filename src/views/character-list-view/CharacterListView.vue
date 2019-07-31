@@ -9,11 +9,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="person in people" :key="`person-${person.id}`">
-          <td>{{ person.id }}</td>
-          <td>{{ person.name }}</td>
+        <tr v-for="character in characters" :key="`character-${character.id}`">
+          <td>{{ character.id }}</td>
+          <td>{{ character.name }}</td>
           <td>
-            <router-link :to="{ name: 'person', params: { id: person.id } }">
+            <router-link :to="{ name: 'character', params: { id: character.id } }">
               ->
             </router-link>
           </td>
@@ -25,7 +25,7 @@
         <li v-if="page !== 1" class="page-item">
           <router-link
             class="page-link"
-            :to="{ name: 'people', query: { page: page - 1 } }"
+            :to="{ name: 'characters', query: { page: page - 1 } }"
           >
             Previous
           </router-link>
@@ -37,7 +37,7 @@
         >
           <router-link
             class="page-link"
-            :to="{ name: 'people', query: { page: pageNumber } }"
+            :to="{ name: 'characters', query: { page: pageNumber } }"
           >
             {{ pageNumber }}
           </router-link>
@@ -45,7 +45,7 @@
         <li v-if="page !== totalPages" class="page-item">
           <router-link
             class="page-link"
-            :to="{ name: 'people', query: { page: page + 1 } }"
+            :to="{ name: 'characters', query: { page: page + 1 } }"
           >
             Next
           </router-link>
@@ -57,7 +57,7 @@
 
 <script>
 import VueTypes from "vue-types";
-import { peopleService } from "@/services";
+import { charactersService } from "@/services";
 
 export default {
   props: {
@@ -70,27 +70,27 @@ export default {
     };
   },
   mounted() {
-    peopleService.list({ page: this.page })
+    charactersService.list({ page: this.page })
   },
   watch: {
     page: function(page) {
-      peopleService.list({ page: this.page })
+      charactersService.list({ page: this.page })
     },
-    peopleRequest: function(response) {
+    charactersRequest: function(response) {
       const { count } = response.data;
       this.totalPages = count;
       this.pages = Math.round(count / 10);
     }
   },
   computed: {
-    peopleRequest: function() {
+    charactersRequest: function() {
       return this.$store.getters.getEntity("people");
     },
-    people: function() {
-      return this.peopleRequest.data.results;
+    characters: function() {
+      return this.charactersRequest.data.results;
     },
     loading: function() {
-      return this.peopleRequest.loading;
+      return this.charactersRequest.loading;
     }
   }
 };

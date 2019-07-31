@@ -1,5 +1,5 @@
 export {default as MainView} from "./main-view/MainView";
 export {default as AboutView} from "./about-view/AboutView";
 export {default as CounterView} from "./counter-view/CounterView";
-export {default as PeopleView} from "./people-view/PeopleView";
-export {default as PersonView} from "./person-view/PersonView";
+export {default as CharacterListView} from "./character-list-view/CharacterListView";
+export {default as CharacterView} from "./character-view/CharacterView";

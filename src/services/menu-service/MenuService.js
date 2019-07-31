@@ -7,8 +7,8 @@ export default {
                 path: "/counter"
             },
             {
-                name: "People",
-                path: "/people"
+                name: "Characters",
+                path: "/characters"
             },
             {
                 name: "About",

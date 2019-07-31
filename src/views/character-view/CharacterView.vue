@@ -2,13 +2,13 @@
   <div>
     <div v-if="loading">loading... {{ loading }}</div>
     <div v-if="!loading">
-      {{ person.name }}
+      {{ character.name }}
     </div>
   </div>
 </template>
 
 <script>
-import { peopleService } from "@/services";
+import { charactersService } from "@/services";
 import VueTypes from "vue-types";
 
 export default {
@@ -16,17 +16,17 @@ export default {
     id: VueTypes.number.isRequired
   },
   mounted() {
-    peopleService.get(this.id);
+    charactersService.get(this.id);
   },
   computed: {
-    peopleRequest: function() {
+    charactersRequest: function() {
       return this.$store.getters.getEntity(`people-${this.id}`);
     },
-    person: function() {
-      return this.peopleRequest.data;
+    character: function() {
+      return this.charactersRequest.data;
     },
     loading: function() {
-      return this.peopleRequest.loading;
+      return this.charactersRequest.loading;
     }
   }
 };
