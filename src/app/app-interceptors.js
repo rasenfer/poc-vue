@@ -1,4 +1,4 @@
-import { axiosinterceptors } from "@/core";
+import { axiosinterceptors } from "@/core/api";
 
 const patternLast = new RegExp(/([0-9]*)&pageSize=[0-9]*>; rel="last"/);
 const patternSize = new RegExp(/([0-9]*)>; rel="last"/);

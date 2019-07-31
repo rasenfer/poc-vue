@@ -45,11 +45,7 @@
         <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a>
       </li>
       <li>
-        <a
-          href="https://lodash.com/"
-          target="_blank"
-          rel="noopener"
-        >lodash</a>
+        <a href="https://lodash.com/" target="_blank" rel="noopener">lodash</a>
       </li>
     </ul>
     <h3>Essential Links</h3>
@@ -74,7 +70,7 @@
 </template>
 
 <script>
-  import {api} from "@/core";
+import { api } from "@/core/api";
 export default {
   data: function() {
     return {

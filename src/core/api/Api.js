@@ -1,7 +1,7 @@
 import Vue from "vue";
 import axios from "axios";
 
-import { axiosinterceptors } from "@/core";
+import { axiosinterceptors } from "@/core/api";
 import storeCache from "@/core/api/StoreCache";
 
 function isHandlerEnabled(config = {}) {
@@ -62,7 +62,7 @@ function checkAxiosInstance(api) {
   }
 }
 
-class Api {
+export default class Api {
   constructor(type) {
     this.type = type;
   }
@@ -86,7 +86,3 @@ class Api {
     return this.axiosInstance.delete(uri);
   }
 }
-
-export default new Api();
-export const local = new Api("test");
-export const mock = new Api("local");

@@ -1,4 +1,4 @@
-import {api} from '@/core';
+import {api} from '@/core/api';
 
 const basepath = "/characters";
 export default {
