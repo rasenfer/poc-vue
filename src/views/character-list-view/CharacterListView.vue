@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import VueTypes from "vue-types";
-import { charactersService } from "@/services";
+import VueTypes from 'vue-types';
+import { charactersService } from '@/services';
 
 export default {
   props: {

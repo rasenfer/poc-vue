@@ -1,5 +1,5 @@
-import Vue from "vue";
-import lastUpdateMutation from "@/core/store/utils/LastUpdateMutation";
+import Vue from 'vue';
+import lastUpdateMutation from '@/core/store/utils/LastUpdateMutation';
 
 function getEntityId(url) {
   return url

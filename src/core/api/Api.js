@@ -1,8 +1,8 @@
-import Vue from "vue";
-import axios from "axios";
+import Vue from 'vue';
+import axios from 'axios';
 
-import { axiosinterceptors } from "@/core/api";
-import storeCache from "@/core/api/StoreCache";
+import { axiosinterceptors } from '@/core/api';
+import storeCache from '@/core/api/StoreCache';
 
 function isHandlerEnabled(config = {}) {
   return !config.hasOwnProperty("handlerEnabled") || config.handlerEnabled;

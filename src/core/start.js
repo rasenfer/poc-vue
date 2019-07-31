@@ -1,14 +1,14 @@
-import "@/core/config/polyfill-config";
-import "@/core/config/bootstrap-config";
-import "@/core/config/lodash-config";
-import router from "@/core/config/router-config";
-import store from "@/core/config/vuex-config";
-import { app as appComponent } from "@/core/components";
+import '@/core/config/polyfill-config';
+import '@/core/config/bootstrap-config';
+import '@/core/config/lodash-config';
+import router from '@/core/config/router-config';
+import store from '@/core/config/vuex-config';
+import { app as appComponent } from '@/core/components';
 
-import Vue from "vue";
+import Vue from 'vue';
 
 export default function(appName, MainView, appStore, appRoutes, apiUrls) {
-  const production = process.env.NODE_ENV === "production";
+  const production = process.env.NODE_ENV === 'production';
   Vue.config.devtools = !production;
   Vue.config.productionTip = production;
 

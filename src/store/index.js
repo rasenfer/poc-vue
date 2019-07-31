@@ -1,4 +1,4 @@
-import counter from "./counter-module/CounterModule";
+import counter from './counter-module/CounterModule';
 
 export default {
     state: {},

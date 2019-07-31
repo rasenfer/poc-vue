@@ -1,5 +1,5 @@
-import apiInterceptor from "./ApiInterceptor";
-import storeApiInterceptor from "./StoreApiInterceptor";
+import apiInterceptor from './ApiInterceptor';
+import storeApiInterceptor from './StoreApiInterceptor';
 
 export default {
     requestHandlers: [

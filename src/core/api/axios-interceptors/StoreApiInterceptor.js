@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue';
 
 function getApiUrl(config) {
    return config.url.replace(config.baseURL, "");

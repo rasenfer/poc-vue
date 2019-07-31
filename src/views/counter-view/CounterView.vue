@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import { Counter, CounterState } from "@/components";
-import mapActions from "./CounterMapActions";
-import mapState from "./CounterMapState";
+import { Counter, CounterState } from '@/components';
+import mapActions from './CounterMapActions';
+import mapState from './CounterMapState';
 
 export default {
   data() {

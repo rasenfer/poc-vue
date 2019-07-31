@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue';
 
 export default function(uri) {
     const store = Vue.config.store;

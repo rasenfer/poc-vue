@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue';
 
 export default function (rootState) {
     if (Vue.config.devtools) {

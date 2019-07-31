@@ -1,5 +1,5 @@
-import Vue from "vue";
-import VueTypes from "vue-types";
+import Vue from 'vue';
+import VueTypes from 'vue-types';
 
 export default Vue.component("app", {
   props: {

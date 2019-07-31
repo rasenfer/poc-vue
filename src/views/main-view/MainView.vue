@@ -14,17 +14,17 @@
         </div>
       </div>
       <div class="footer">
-        v{{ version }}{{ env !== "production" ? " - env: " + env : "" }}
+        v{{ version }}{{ env !== 'production' ? " - env: " + env : "" }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { menuService } from "@/services";
-import { Header, Menu } from "@/components";
+import { menuService } from '@/services';
+import { Header, Menu } from '@/components';
 
-import logo from "@/assets/logo.png";
+import logo from '@/assets/logo.png';
 
 export default {
   components: {

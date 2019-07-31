@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { api } from "@/core/api";
+import { api } from '@/core/api';
 export default {
   data: function() {
     return {

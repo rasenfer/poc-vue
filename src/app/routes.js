@@ -1,4 +1,4 @@
-import { CounterView, CharacterListView, CharacterView, AboutView } from "@/views";
+import { CounterView, CharacterListView, CharacterView, AboutView } from '@/views';
 
 export default [
   { name: "counter", path: "/counter", component: CounterView },
