@@ -80,11 +80,11 @@ export default {
   props: {
     page: VueTypes.number.def(1)
   },
-  mounted() {
+  mounted: function() {
     charactersService.list({ page: this.page });
   },
   watch: {
-    page(page) {
+    page: function(page) {
       charactersService.list({ page });
     }
   },
@@ -92,13 +92,13 @@ export default {
     charactersRequest: function() {
       return this.$store.getters.getEntity(`characters`);
     },
-    loading() {
+    loading: function() {
       return this.charactersRequest.loading;
     },
-    characters() {
+    characters: function() {
       return this.charactersRequest.data.content;
     },
-    pageMetadata() {
+    pageMetadata: function() {
       return this.charactersRequest.data.pageMetadata;
     }
   }

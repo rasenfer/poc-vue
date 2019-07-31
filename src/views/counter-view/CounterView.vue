@@ -13,7 +13,7 @@ import mapActions from "./CounterMapActions";
 import mapState from "./CounterMapState";
 
 export default {
-  data: function() {
+  data() {
     return {
       start: 10
     };

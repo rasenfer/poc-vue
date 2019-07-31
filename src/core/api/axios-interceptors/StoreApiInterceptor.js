@@ -5,19 +5,19 @@ function getApiUrl(config) {
 }
 
 export default {
-  requestHandler: function(request) {
+  requestHandler(request) {
     const store = Vue.config.store;
     const url = getApiUrl(request);
     store.dispatch("apiRequestProcessing", { url, request });
     return request;
   },
-  responseHandler: function(response) {
+  responseHandler(response) {
     const store = Vue.config.store;
     const url = getApiUrl(response.config);
     store.dispatch("apiRequestDone", { url, response });
     return response;
   },
-  errorHandler: function(error) {
+  errorHandler(error) {
     const store = Vue.config.store;
     const url = getApiUrl(error.config);
     store.dispatch("apiRequestError", { url, error });

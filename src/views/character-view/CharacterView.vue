@@ -21,12 +21,12 @@ export default {
   props: {
     id: VueTypes.number.isRequired
   },
-  mounted() {
+  mounted: function() {
     charactersService.get(this.id);
   },
   watch: {
-    id(id) {
-      charactersService.get(id);
+    id: function(id) {
+      charactersService.get(value);
     }
   },
   computed: {
