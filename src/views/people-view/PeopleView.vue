@@ -13,23 +13,42 @@
           <td>{{ person.id }}</td>
           <td>{{ person.name }}</td>
           <td>
-            <router-link :to="{ name: 'person', params: { id: person.id } }"
-              >-></router-link
-            >
+            <router-link :to="{ name: 'person', params: { id: person.id } }">
+              ->
+            </router-link>
           </td>
         </tr>
       </tbody>
     </table>
     <nav v-if="!loading && pages" aria-label="Page navigation example">
       <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#">Previous</a>
+        <li v-if="page !== 1" class="page-item">
+          <router-link
+            class="page-link"
+            :to="{ name: 'people', query: { page: page - 1 } }"
+          >
+            Previous
+          </router-link>
         </li>
-        <li class="page-item" v-for="page in pages" :key="`page-${page}`">
-          <a class="page-link" href="#" @click.prevent="list(page)">{{ page }}</a>
+        <li
+          class="page-item"
+          v-for="pageNumber in pages"
+          :key="`page-${pageNumber}`"
+        >
+          <router-link
+            class="page-link"
+            :to="{ name: 'people', query: { page: pageNumber } }"
+          >
+            {{ pageNumber }}
+          </router-link>
         </li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+        <li v-if="page !== totalPages" class="page-item">
+          <router-link
+            class="page-link"
+            :to="{ name: 'people', query: { page: page + 1 } }"
+          >
+            Next
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -37,25 +56,31 @@
 </template>
 
 <script>
+import VueTypes from "vue-types";
 import { peopleService } from "@/services";
 
 export default {
+  props: {
+    page: VueTypes.number.def(1)
+  },
   data: function() {
     return {
       pages: 0,
-      currentPage: 1
+      totalPages: 0
     };
   },
-  methods: {
-    list(page) {
-      peopleService.list({ page }).then(response => {
-        const { count } = response.data;
-        this.pages = Math.round(count / 10);
-      });
-    }
-  },
   mounted() {
-    this.list(this.currentPage);
+    peopleService.list({ page: this.page })
+  },
+  watch: {
+    page: function(page) {
+      peopleService.list({ page: this.page })
+    },
+    peopleRequest: function(response) {
+      const { count } = response.data;
+      this.totalPages = count;
+      this.pages = Math.round(count / 10);
+    }
   },
   computed: {
     peopleRequest: function() {
