@@ -64,22 +64,17 @@ export default {
     page: VueTypes.number.def(1)
   },
   data: () => ({ loading: true, characters: {}, pageMetadata: {} }),
-  methods: {
-    list: function(page) {
-      this.loading = true;
-      charactersService.list({ page }).then(response => {
-        this.loading = false;
-        this.characters = response.data.content;
-        this.pageMetadata = response.data.pageMetadata;
-      });
-    }
-  },
-  mounted: function() {
-    this.list(this.page);
-  },
   watch: {
-    page: function(page) {
-      this.list(page);
+    page: {
+      immediate: true,
+      handler: function(page) {
+        this.loading = true;
+        charactersService.list({ page }).then(response => {
+          this.loading = false;
+          this.characters = response.data.content;
+          this.pageMetadata = response.data.pageMetadata;
+        });
+      }
     }
   }
 };

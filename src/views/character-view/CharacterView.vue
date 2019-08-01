@@ -14,29 +14,24 @@
 </template>
 
 <script>
-import { charactersService } from '@/services';
-import VueTypes from 'vue-types';
+import { charactersService } from "@/services";
+import VueTypes from "vue-types";
 
 export default {
   props: {
     id: VueTypes.number.isRequired
   },
   data: () => ({ loading: true, character: {} }),
-  methods: {
-    getCharacter: function(id) {
-      this.loading = true;
-      charactersService.get(id).then(response => {
-        this.loading = false;
-        this.character = response.data.content;
-      });
-    }
-  },
-  mounted: function() {
-    this.getCharacter(this.id);
-  },
   watch: {
-    id: function(id) {
-      this.getCharacter(id);
+    id: {
+      immediate: true,
+      handler: function(id) {
+        this.loading = true;
+        charactersService.get(id).then(response => {
+          this.loading = false;
+          this.character = response.data.content;
+        });
+      }
     }
   }
 };
