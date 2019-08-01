@@ -1,6 +1,7 @@
 import '@/core/config/polyfill-config';
 import '@/core/config/bootstrap-config';
 import '@/core/config/lodash-config';
+import '@/core/api/Api';
 import router from '@/core/config/router-config';
 import store from '@/core/config/vuex-config';
 import { app as appComponent } from '@/core/components';
