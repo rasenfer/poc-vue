@@ -29,7 +29,7 @@ export default {
         this.loading = true;
         charactersService.get(id).then(response => {
           this.loading = false;
-          this.character = response.data.content;
+          this.character = response.data;
         });
       }
     }
