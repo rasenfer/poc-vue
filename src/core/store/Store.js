@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import entities from './entity-module/EntityModule';
 import apiRequest from './api-module/ApiModule';
 import router from './router-module/RouterModule';
 
@@ -16,7 +15,6 @@ export default function(store) {
         getLastUpdate: (state) => () => state.lastUpdate
     },
     modules: {
-      entities,
       apiRequest,
       router,
       ...store.modules

@@ -21,23 +21,21 @@ export default {
   props: {
     id: VueTypes.number.isRequired
   },
+  data: () => ({ loading: true, character: {} }),
+  methods: {
+    getCharacter: function(id) {
+      charactersService.get(id).then(response => {
+        this.loading = false;
+        this.character = response.data.content;
+      });
+    }
+  },
   mounted: function() {
-    charactersService.get(this.id);
+    this.getCharacter(this.id);
   },
   watch: {
     id: function(id) {
-      charactersService.get(id);
-    }
-  },
-  computed: {
-    charactersRequest: function() {
-      return this.$store.getters.getEntity(`characters-${this.id}`);
-    },
-    loading: function() {
-      return this.charactersRequest.loading;
-    },
-    character: function() {
-      return this.charactersRequest.data;
+      this.getCharacter(id);
     }
   }
 };

@@ -1,11 +1,35 @@
 import Vue from 'vue';
 
-export default function(uri) {
-    const store = Vue.config.store;
-    let response = null;
-    if (Vue.config.devtools && Vue.config.lastUpdate > store.getters.getLastUpdate()) {
-      response = store.getters.getApiRequest(uri);
-      response = Promise.resolve(response);
+const checkStoredResponse = (uri, resolve, reject) => {
+  const store = Vue.config.store;
+  const lastUpdate = Vue.config.lastUpdate;
+  const storeLastUpdate = store.getters.getLastUpdate();
+  const apiResponse = store.getters.getApiRequest(uri);
+  if (apiResponse.dummy) {
+    if (lastUpdate === storeLastUpdate) {
+      resolve(null);
+    } else {
+      reject(apiResponse);
     }
-    return response;
+  } else {
+    resolve(apiResponse);
+  }
+};
+
+export default function(uri) {
+  const store = Vue.config.store;
+  const lastUpdate = Vue.config.lastUpdate;
+  const storeLastUpdate = store.getters.getLastUpdate();
+  let response = null;
+  if (Vue.config.devtools && lastUpdate >= storeLastUpdate) {
+    response = new Promise((resolve) => {
+      const waitCheckStoredResponse = () => {
+        checkStoredResponse(uri, resolve, () =>
+          setTimeout(waitCheckStoredResponse, 100)
+        );
+      };
+      waitCheckStoredResponse();
+    });
+  }
+  return response;
 }

@@ -5,21 +5,13 @@ export default {
   state: {},
   getters: {
     getApiRequest: (state) => (url) => {
-      return (
-        state[url] || {
-          dummy: true,
-          loading: true,
-          data: { id: null, results: [] }
-        }
-      );
+      return state[url]
+        ? { data: { id: null, results: [] }, stored: true, ...state[url] }
+        : { data: { id: null, results: [] }, stored: true, dummy: true };
     }
   },
   mutations: {
-    apiRequestProcessing: (state, { url, request, rootState }) => {
-      Vue.set(state, url, { config: { ...request } });
-      lastUpdateMutation(rootState);
-    },
-    apiRequestDone: (state, { url, response, rootState }) => {
+    apiRequest: (state, { url, response, rootState }) => {
       Vue.set(state, url, { ...response });
       lastUpdateMutation(rootState);
     },
@@ -32,11 +24,8 @@ export default {
     }
   },
   actions: {
-    apiRequestProcessing: ({ commit, rootState }, payload) => {
-      commit('apiRequestProcessing', { ...payload, rootState });
-    },
-    apiRequestDone: ({ commit, rootState }, payload) => {
-      commit('apiRequestDone', { ...payload, rootState });
+    apiRequest: ({ commit, rootState }, payload) => {
+      commit('apiRequest', { ...payload, rootState });
     },
     apiRequestError: ({ commit, rootState }, payload) => {
       commit('apiRequestError', { ...payload, rootState });

@@ -13,25 +13,33 @@
           <td>{{ character.id }}</td>
           <td>{{ character.name || character.aliases[0] }}</td>
           <td>
-            <router-link :to="{ name: 'character', params: { id: character.id } }">-></router-link>
+            <router-link
+              :to="{ name: 'character', params: { id: character.id } }"
+              >-></router-link
+            >
           </td>
         </tr>
       </tbody>
     </table>
-    <nav v-if="!loading> 1" aria-label="Page navigation example">
+    <nav v-if="!loading && pageMetadata" aria-label="Page navigation example">
       <ul class="pagination">
         <li v-if="page !== 1" class="page-item">
           <router-link
             class="page-link"
             :to="{ path: '/characters', query: { page: page - 1 } }"
-          >Prev</router-link>
+            >Prev</router-link
+          >
         </li>
-        <div v-for="pageNumber in pageMetadata.totalPages" :key="`page-${pageNumber}`">
+        <div
+          v-for="pageNumber in pageMetadata.totalPages"
+          :key="`page-${pageNumber}`"
+        >
           <li
             v-if="
               pageNumber == page ||
                 (page - 5 < 0 && pageNumber < 10) ||
-                (page + 5 > pageMetadata.totalPages && pageNumber > pageMetadata.totalPages - 9) ||
+                (page + 5 > pageMetadata.totalPages &&
+                  pageNumber > pageMetadata.totalPages - 9) ||
                 (pageNumber < page && pageNumber > page - 5) ||
                 (pageNumber > page && pageNumber < page + 5)
             "
@@ -40,14 +48,16 @@
             <router-link
               class="page-link"
               :to="{ path: '/characters', query: { page: pageNumber } }"
-            >{{ pageNumber }}</router-link>
+              >{{ pageNumber }}</router-link
+            >
           </li>
         </div>
         <li v-if="page !== pageMetadata.totalPages" class="page-item">
           <router-link
             class="page-link"
             :to="{ path: '/characters', query: { page: page + 1 } }"
-          >Next</router-link>
+            >Next</router-link
+          >
         </li>
       </ul>
     </nav>
@@ -55,33 +65,29 @@
 </template>
 
 <script>
-import VueTypes from 'vue-types';
-import { charactersService } from '@/services';
+import VueTypes from "vue-types";
+import { charactersService } from "@/services";
 
 export default {
   props: {
     page: VueTypes.number.def(1)
   },
+  data: () => ({ loading: true, characters: {}, pageMetadata: {} }),
+  methods: {
+    list: function(page) {
+      charactersService.list({ page }).then(response => {
+        this.loading = false;
+        this.characters = response.data.content;
+        this.pageMetadata = response.data.pageMetadata;
+      });
+    }
+  },
   mounted: function() {
-    charactersService.list({ page: this.page });
+    this.list(this.page);
   },
   watch: {
     page: function(page) {
-      charactersService.list({ page });
-    }
-  },
-  computed: {
-    charactersRequest: function() {
-      return this.$store.getters.getEntity('characters');
-    },
-    loading: function() {
-      return this.charactersRequest.loading;
-    },
-    characters: function() {
-      return this.charactersRequest.data.content;
-    },
-    pageMetadata: function() {
-      return this.charactersRequest.data.pageMetadata;
+      this.list(page);
     }
   }
 };
