@@ -14,26 +14,24 @@ export default Vue.component('app', {
     route: function(route, prevRoute) {
       if (
         Vue.config.devtools &&
+        Vue.config.dev.lastUpdate >= Vue.config.store.getters.getLastUpdate() &&
         (route.fullPath !== prevRoute.fullPath ||
           !_.isEqual(route.params, prevRoute.params))
       ) {
-        Object.keys(Vue.config.timeouts).forEach(key => {
-          clearTimeout(Vue.config.timeouts[key]);
+        Object.keys(Vue.config.dev.timeouts).forEach(key => {
+          clearTimeout(Vue.config.dev.timeouts[key]);
         });
-        Vue.config.restoring = true;
+        Vue.config.dev.restoring = true;
         this.$router.push(route);
-        Vue.config.restoring = false;
+        Vue.config.dev.restoring = false;
         this.$forceUpdate();
       }
     },
     apiRequest: function(apiRequest, prevApiRequest) {
-      const store = Vue.config.store;
-      const lastUpdate = Vue.config.lastUpdate;
-      const storeLastUpdate = store.getters.getLastUpdate();
       if (
         Vue.config.devtools &&
-        !_.isEqual(apiRequest, prevApiRequest) &&
-        lastUpdate >= storeLastUpdate
+        Vue.config.dev.lastUpdate >= Vue.config.store.getters.getLastUpdate() &&
+        !_.isEqual(apiRequest, prevApiRequest)
       ) {
         const update = component => {
           component.$children.forEach(child => {
@@ -48,9 +46,9 @@ export default Vue.component('app', {
             child.$forceUpdate();
           });
         };
-        Vue.config.restoring = true;
+        Vue.config.dev.restoring = true;
         update(this);
-        Vue.config.restoring = false;
+        Vue.config.dev.restoring = false;
       }
     }
   },

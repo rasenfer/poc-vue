@@ -14,15 +14,18 @@ export default function(appName, MainView, appStore, appRoutes, apiUrls) {
 
   Vue.config.apiUrls = apiUrls;
   Vue.config.appName = appName;
-  Vue.config.lastUpdate = new Date().getTime();
   if (!production) {
-    Vue.config.timeouts = {};
+    Vue.config.dev = {
+      lastUpdate: new Date().getTime(),
+      restoring: false,
+      timeouts: {}
+    };
   }
 
   const app = new Vue({
     router: router(appRoutes),
     store: store(appStore),
-    render: (render) =>
+    render: render =>
       render(appComponent, {
         props: {
           appName,
