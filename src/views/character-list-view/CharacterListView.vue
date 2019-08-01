@@ -75,6 +75,7 @@ export default {
   data: () => ({ loading: true, characters: {}, pageMetadata: {} }),
   methods: {
     list: function(page) {
+      this.loading = true;
       charactersService.list({ page }).then(response => {
         this.loading = false;
         this.characters = response.data.content;

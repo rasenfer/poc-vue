@@ -15,6 +15,9 @@ export default function(appName, MainView, appStore, appRoutes, apiUrls) {
   Vue.config.apiUrls = apiUrls;
   Vue.config.appName = appName;
   Vue.config.lastUpdate = new Date().getTime();
+  if (!production) {
+    Vue.config.timeouts = {};
+  }
 
   const app = new Vue({
     router: router(appRoutes),
@@ -32,7 +35,6 @@ export default function(appName, MainView, appStore, appRoutes, apiUrls) {
   }).$mount('#app');
 
   if (!production && window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {
-    Vue.config.appName = appName;
     window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = app.constructor;
   }
 }

@@ -24,6 +24,7 @@ export default {
   data: () => ({ loading: true, character: {} }),
   methods: {
     getCharacter: function(id) {
+      this.loading = true;
       charactersService.get(id).then(response => {
         this.loading = false;
         this.character = response.data.content;
