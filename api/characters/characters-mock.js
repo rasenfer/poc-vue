@@ -1,4 +1,4 @@
-const characters = require("./characters-mock-data.json");
+const characters = require('./characters-mock-data.json');
 
 const headers = {
   link: [
@@ -9,11 +9,11 @@ const headers = {
 };
 
 module.exports = {
-  method: "GET",
-  path: "/characters",
+  method: 'GET',
+  path: '/characters',
   callback(req, res) {
     res
-      .append("link", headers.link.join())
+      .append('link', headers.link.join())
       .status(200)
       .json(characters);
   }

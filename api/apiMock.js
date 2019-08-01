@@ -1,16 +1,16 @@
 module.exports = {
-  base: "/api",
+  base: '/api',
   routes: [
     {
-      method: "PUT",
-      path: "/*",
+      method: 'PUT"',
+      path: '/*',
       callback(req, res) {
         res
           .status(200)
-          .send("OK")
+          .send('OK')
           .end();
       }
     },
-    require("./characters/characters-mock.js")
-  ],
+    require('./characters/characters-mock.js')
+  ]
 };
