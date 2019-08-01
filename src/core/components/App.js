@@ -11,11 +11,15 @@ export default Vue.component('app', {
     ]);
   },
   watch: {
-    route: function(route) {
-      if (Vue.config.devtools) {
+    route: function(route, prevRoute) {
+      if (
+        Vue.config.devtools &&
+        (route.fullPath !== prevRoute.fullPath ||
+          !_.isEqual(route.params, prevRoute.params))
+      ) {
         Object.keys(Vue.config.timeouts).forEach(key => {
           clearTimeout(Vue.config.timeouts[key]);
-        })
+        });
         Vue.config.restoring = true;
         this.$router.push(route);
         Vue.config.restoring = false;
