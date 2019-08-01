@@ -25,10 +25,40 @@ export default Vue.component('app', {
         Vue.config.restoring = false;
         this.$forceUpdate();
       }
+    },
+    apiRequest: function(apiRequest, prevApiRequest) {
+      const store = Vue.config.store;
+      const lastUpdate = Vue.config.lastUpdate;
+      const storeLastUpdate = store.getters.getLastUpdate();
+      if (
+        Vue.config.devtools &&
+        !_.isEqual(apiRequest, prevApiRequest) &&
+        lastUpdate >= storeLastUpdate
+      ) {
+        const update = component => {
+          component.$children.forEach(child => {
+            if (child.$props) {
+              child._watchers.forEach(watcher => {
+                if (child.$props.hasOwnProperty(watcher.expression)) {
+                  watcher.cb.bind(child)(child.$props[watcher.expression]);
+                }
+              });
+            }
+            update(child);
+            child.$forceUpdate();
+          });
+        };
+        Vue.config.restoring = true;
+        update(this);
+        Vue.config.restoring = false;
+      }
     }
   },
   computed: {
     name: () => Vue.config.appName,
+    apiRequest: function() {
+      return this.$store.state.apiRequest;
+    },
     route: function() {
       return this.$store.state.router;
     }

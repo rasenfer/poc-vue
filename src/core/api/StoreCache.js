@@ -6,7 +6,7 @@ const checkStoredResponse = (uri, restoring, resolve, reject) => {
   const storeLastUpdate = store.getters.getLastUpdate();
   const apiResponse = store.getters.getApiRequest(uri);
   if (apiResponse.dummy) {
-    if (lastUpdate === storeLastUpdate) {
+    if (!restoring && lastUpdate === storeLastUpdate) {
       resolve(null);
     } else {
       reject(apiResponse);
@@ -25,8 +25,8 @@ export default function(uri) {
   if (Vue.config.devtools && lastUpdate >= storeLastUpdate) {
     response = new Promise((resolve) => {
       const waitCheckStoredResponse = () => {
+        clearTimeout(Vue.config.timeouts[uri]);
         checkStoredResponse(uri, restoring, resolve, () => {
-          clearTimeout(Vue.config.timeouts[uri]);
           Vue.config.timeouts[uri] = setTimeout(waitCheckStoredResponse, 100);
         });
       };
