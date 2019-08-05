@@ -1,8 +1,8 @@
 import Vue from 'vue';
 
-const checkStoredResponse = (uri, restoring, resolve, reject) => {
+function checkStoredResponse(uri, restoring, resolve, reject) {
   const store = Vue.config.store;
-  const apiResponse = store.getters.getApiRequest(uri);
+  const apiResponse = store.getters.getApiRequest(uri.split('?')[0]);
   if (apiResponse.dummy) {
     if (!restoring && Vue.config.dev.lastUpdate === store.getters.getLastUpdate()) {
       resolve(null);
@@ -12,7 +12,7 @@ const checkStoredResponse = (uri, restoring, resolve, reject) => {
   } else {
     resolve(apiResponse);
   }
-};
+}
 
 export default function(uri) {
   let response = null;

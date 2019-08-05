@@ -13,7 +13,10 @@
           <td>{{ character.id }}</td>
           <td>{{ character.name || character.aliases[0] }}</td>
           <td>
-            <router-link :to="{ name: 'character', params: { id: character.id } }">-></router-link>
+            <router-link
+              :to="{ name: 'character', params: { id: character.id } }"
+              >-></router-link
+            >
           </td>
         </tr>
       </tbody>
@@ -24,9 +27,13 @@
           <router-link
             class="page-link"
             :to="{ path: '/characters', query: { page: page - 1 } }"
-          >Prev</router-link>
+            >Prev</router-link
+          >
         </li>
-        <div v-for="pageNumber in pageMetadata.totalPages" :key="`page-${pageNumber}`">
+        <div
+          v-for="pageNumber in pageMetadata.totalPages"
+          :key="`page-${pageNumber}`"
+        >
           <li
             v-if="
               pageNumber == page ||
@@ -41,14 +48,16 @@
             <router-link
               class="page-link"
               :to="{ path: '/characters', query: { page: pageNumber } }"
-            >{{ pageNumber }}</router-link>
+              >{{ pageNumber }}</router-link
+            >
           </li>
         </div>
         <li v-if="page !== pageMetadata.totalPages" class="page-item">
           <router-link
             class="page-link"
             :to="{ path: '/characters', query: { page: page + 1 } }"
-          >Next</router-link>
+            >Next</router-link
+          >
         </li>
       </ul>
     </nav>
@@ -56,8 +65,8 @@
 </template>
 
 <script>
-import VueTypes from 'vue-types';
-import { charactersService } from '@/services';
+import VueTypes from "vue-types";
+import { charactersService } from "@/services";
 
 export default {
   props: {
@@ -69,12 +78,18 @@ export default {
       immediate: true,
       handler: function(page) {
         this.loading = true;
-        charactersService.list({ page }).then(response => {
-          this.loading = false;
-          this.characters = response.data.content;
-          this.pageMetadata = response.data.pageMetadata;
-        });
+        charactersService.list({ page });
       }
+    },
+    charactersResponse: function(response) {
+      this.loading = !response.data.content;
+      this.characters = response.data.content;
+      this.pageMetadata = response.data.pageMetadata;
+    }
+  },
+  computed: {
+    charactersResponse: function() {
+      return this.$store.getters.getApiRequest("/characters");
     }
   }
 };

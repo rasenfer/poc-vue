@@ -5,6 +5,7 @@ export default {
   state: {},
   getters: {
     getApiRequest: (state) => (url) => {
+      console.log(state[url]);
       return state[url]
         ? { data: { id: null, results: [] }, stored: true, ...state[url] }
         : { data: { id: null, results: [] }, stored: true, dummy: true };
