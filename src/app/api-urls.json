@@ -1,6 +1,6 @@
 {
     "local": "/api",
     "dev": "http://localhost:8080",
-    "development": "https://anapioficeandfire.com/api",
-    "production": "https://anapioficeandfire.com/api"
+    "development": "https://cors-anywhere.herokuapp.com/https://anapioficeandfire.com/api",
+    "production": "https://cors-anywhere.herokuapp.com/https://anapioficeandfire.com/api"
 }

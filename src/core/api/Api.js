@@ -1,47 +1,18 @@
 import axios from 'axios';
-
-import { axiosinterceptors } from '@/core/api';
+import apiInterceptor from '@/core/api/axios-interceptors/ApiInterceptor';
+import storeApiInterceptor from '@/core/api/axios-interceptors/StoreApiInterceptor';
 import storeCache from '@/core/api/StoreCache';
 
-function isHandlerEnabled(config = {}) {
-  return !config.hasOwnProperty('handlerEnabled') || config.handlerEnabled;
-}
-
-function requestHandler(request) {
-  if (isHandlerEnabled(request.config)) {
-    axiosinterceptors.requestHandlers.forEach(interceptor =>
-      interceptor(request)
-    );
-  }
-  return request;
-}
-
-function responseHandler(response) {
-  if (isHandlerEnabled(response.config)) {
-    axiosinterceptors.responseHandlers.forEach(interceptor =>
-      interceptor(response)
-    );
-  }
-  return response;
-}
-
-function errorHandler(error) {
-  if (isHandlerEnabled(error.config)) {
-    axiosinterceptors.errorHandlers.forEach(interceptor => interceptor(error));
-  }
-  return Promise.reject({ ...error });
-}
-
-axios.interceptors.request.use(request => requestHandler(request));
+axios.interceptors.request.use(apiInterceptor.requestHandler);
 axios.interceptors.response.use(
-  response => responseHandler(response),
-  error => errorHandler(error)
+  storeApiInterceptor.responseHandler,
+  storeApiInterceptor.errorHandler
 );
 
 const axiosGet = axios.get;
 axios.get = function(uri, params = {}) {
-  return new Promise(resolve => {
-    storeCache(uri).then(response => {
+  return new Promise((resolve) => {
+    storeCache(uri).then((response) => {
       if (response) {
         resolve(response);
       } else {
@@ -49,4 +20,4 @@ axios.get = function(uri, params = {}) {
       }
     });
   });
-}
+};

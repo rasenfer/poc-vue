@@ -1,17 +1,16 @@
 import Vue from 'vue';
 
 export default {
-  requestHandler: function(config) {
-    const api =
-      (config.params && config.params.api) ||
-      process.env.API ||
-      process.env.NODE_ENV;
+  requestHandler: function(request) {
     const apiUrls = Vue.config.apiUrls;
-    config.baseURL = apiUrls[api];
+    request.baseURL =
+      (request.proxy && apiUrls[request.proxy]) ||
+      apiUrls[process.env.API] ||
+      apiUrls[process.env.NODE_ENV];
     if (localStorage && localStorage.token) {
-      config.headers['Authorization'] = `Bearer ${localStorage.token}`;
+      request.headers['Authorization'] = `Bearer ${localStorage.token}`;
     }
-    config.headers['X-Requested-With'] = Vue.config.appName;
-    return config;
+    request.headers['X-Requested-With'] = Vue.config.appName;
+    return request;
   }
 };
