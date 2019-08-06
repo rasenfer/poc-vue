@@ -8,8 +8,6 @@ function getApiUrl(config) {
 
 export default {
   responseHandler(response) {
-    
-  console.log("store", response);
     if (
       response.headers[CONTENT_TYPE_HEADER] &&
       response.headers[CONTENT_TYPE_HEADER].toLowerCase().includes(

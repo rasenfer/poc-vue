@@ -65,31 +65,32 @@
 </template>
 
 <script>
-import VueTypes from "vue-types";
-import { charactersService } from "@/services";
+import VueTypes from 'vue-types';
+import { charactersService } from '@/services';
+import { mapServiceGetters } from '@/core/store';
 
 export default {
   props: {
     page: VueTypes.number.def(1)
   },
-  data: () => ({ loading: true, characters: {}, pageMetadata: {} }),
   watch: {
     page: {
       immediate: true,
       handler: function(page) {
-        this.loading = true;
         charactersService.list({ page });
       }
-    },
-    charactersResponse: function(response) {
-      this.loading = !response.data.content;
-      this.characters = response.data.content;
-      this.pageMetadata = response.data.pageMetadata;
     }
   },
   computed: {
-    charactersResponse: function() {
-      return this.$store.getters.getApiRequest("/characters");
+    ...mapServiceGetters([charactersService]),
+    characters: function() {
+      return this.charactersResponse.data.content;
+    },
+    pageMetadata: function() {
+      return this.charactersResponse.data.pageMetadata;
+    },
+    loading: function() {
+      return this.charactersResponse.config.fetching;
     }
   }
 };

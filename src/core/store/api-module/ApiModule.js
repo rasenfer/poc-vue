@@ -5,19 +5,18 @@ export default {
   state: {},
   getters: {
     getApiRequest: (state) => (url) => {
-      console.log(state[url]);
       return state[url]
         ? { data: { id: null, results: [] }, stored: true, ...state[url] }
-        : { data: { id: null, results: [] }, stored: true, dummy: true };
+        : { data: { id: null, results: [] }, stored: true, dummy: true, config: { fetching: true} };
     }
   },
   mutations: {
     apiRequest: (state, { url, response, rootState }) => {
-      Vue.set(state, url, { ...response });
+      Vue.set(state, url, { ...response, config: { ...response.config, fetching: false} });
       lastUpdateMutation(rootState);
     },
     apiRequestError: (state, { url, error, rootState }) => {
-      Vue.set(state, url, { ...error });
+      Vue.set(state, url, { ...error, config: { ...error.config, fetching: false} });
       lastUpdateMutation(rootState);
     },
     navigate: (state) => {

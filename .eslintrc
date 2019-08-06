@@ -15,7 +15,13 @@
     "parser": "babel-eslint"
   },
   "rules": {
-    "quotes": ["warn", "single", { "avoidEscape": true }],
+    "quotes": [
+      "warn",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
     "vue/brace-style": "error",
     "vue/camelcase": "warning",
     "vue/comma-dangle": "warning",
@@ -32,6 +38,9 @@
     "vue/no-v-html": "error",
     "vue/this-in-template": "error",
     "vue/arrow-spacing": "warning",
-    "vue/space-unary-ops": "warning"
+    "vue/space-unary-ops": "warning",
+    "vue/html-quotes": "warning",
+    "vue/html-self-closing": "warning",
+    "vue/no-confusing-v-for-v-if": "error"
   }
 }
