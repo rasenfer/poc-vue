@@ -1,12 +1,15 @@
 {
   "plugins": ["lodash"],
   "presets": [
-    ["@babel/preset-env", {
-      "useBuiltIns": "usage",
-      "corejs": "^3.0.0",
-      "targets": {
-        "browsers": ["> 1%", "last 2 version", "not ie <= 8"]
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": "^3.0.0",
+        "targets": {
+          "browsers": ["> 1%", "last 2 version", "not ie <= 8"]
+        }
       }
-    }]
+    ]
   ]
 }

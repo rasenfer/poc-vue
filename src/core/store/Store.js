@@ -12,7 +12,7 @@ export default function(store) {
     },
     getters: {
       ...store.getters,
-        getLastUpdate: (state) => () => state.lastUpdate
+      getLastUpdate: state => () => state.lastUpdate
     },
     modules: {
       apiRequest,

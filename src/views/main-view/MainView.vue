@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="footer">
-        v{{ version }}{{ env !== 'production' ? " - env: " + env : "" }}
+        v{{ version }}{{ env !== "production" ? " - env: " + env : "" }}
       </div>
     </div>
   </div>

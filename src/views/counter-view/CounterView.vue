@@ -3,7 +3,11 @@
     <div>Counter</div>
     <Counter :start="start" />
     <div>Counter With Vuex</div>
-    <CounterState :counter="counter.counter" :increment="countIncrement" :decrement="countDecrement" />
+    <CounterState
+      :counter="counter.counter"
+      :increment="countIncrement"
+      :decrement="countDecrement"
+    />
   </div>
 </template>
 

@@ -14,7 +14,7 @@ const axiosGet = axios.get;
 axios.get = function(uri, params = {}, config = {}) {
   let response;
   const storedResponse = storeCache(uri);
-  if(storedResponse) {
+  if (storedResponse) {
     response = Promise.resolve(storedResponse);
   } else {
     response = axiosGet(uri, { params, ...config });

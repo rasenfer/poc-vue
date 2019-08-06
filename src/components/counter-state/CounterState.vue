@@ -1,7 +1,7 @@
 <template>
   <div class="counter">
     <input v-model="counter" />
-    {{counter}}
+    {{ counter }}
     <button @click="increment">+</button>
     <button @click="decrement">-</button>
   </div>

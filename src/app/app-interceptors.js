@@ -5,9 +5,9 @@ const patternSize = new RegExp(/([0-9]*)>; rel="last"/);
 const patternNumber = new RegExp(/page=[0-9]*([0-9])/);
 
 function responseHandler(response, headers) {
-  let data = JSON.parse(response)
+  let data = JSON.parse(response);
   if (Array.isArray(data)) {
-    data.forEach((entry) => {
+    data.forEach(entry => {
       const url = entry.url.split('/');
       entry.id = url[url.length - 1];
     });

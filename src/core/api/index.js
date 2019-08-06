@@ -1,2 +1,1 @@
-
-export {default as api} from '@/core/api/Api';
+export { default as api } from '@/core/api/Api';
