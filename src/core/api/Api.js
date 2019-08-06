@@ -10,13 +10,13 @@ axios.interceptors.response.use(
 );
 
 const axiosGet = axios.get;
-axios.get = function(uri, params = {}) {
+axios.get = function(uri, params = {}, config = {}) {
   return new Promise((resolve) => {
     storeCache(uri).then((response) => {
       if (response) {
         resolve(response);
       } else {
-        resolve(axiosGet(uri, params));
+        resolve(axiosGet(uri, { params, ...config }));
       }
     });
   });
