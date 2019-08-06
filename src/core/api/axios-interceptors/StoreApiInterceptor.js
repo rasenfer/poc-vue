@@ -7,7 +7,13 @@ function getApiUrl(config) {
 }
 
 export default {
-  responseHandler(response) {
+  requestHandler: function(request) {
+    const url = getApiUrl(request);
+    const store = Vue.config.store;
+    store.dispatch('apiFetching', { url, request });
+    return request;
+  },
+  responseHandler: function(response) {
     if (
       response.headers[CONTENT_TYPE_HEADER] &&
       response.headers[CONTENT_TYPE_HEADER].toLowerCase().includes(
@@ -16,11 +22,11 @@ export default {
     ) {
       const url = getApiUrl(response.config);
       const store = Vue.config.store;
-      store.dispatch('apiRequest', { url, response });
+      store.dispatch('apiRequestDone', { url, response });
     }
     return response;
   },
-  errorHandler(error) {
+  errorHandler: function(error) {
     const url = getApiUrl(error.config);
     const store = Vue.config.store;
     store.dispatch('apiRequestError', { url, error });

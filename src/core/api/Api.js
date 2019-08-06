@@ -4,6 +4,7 @@ import storeApiInterceptor from '@/core/api/axios-interceptors/StoreApiIntercept
 import storeCache from '@/core/api/StoreCache';
 
 axios.interceptors.request.use(apiInterceptor.requestHandler);
+axios.interceptors.request.use(storeApiInterceptor.requestHandler);
 axios.interceptors.response.use(
   storeApiInterceptor.responseHandler,
   storeApiInterceptor.errorHandler
@@ -11,13 +12,12 @@ axios.interceptors.response.use(
 
 const axiosGet = axios.get;
 axios.get = function(uri, params = {}, config = {}) {
-  return new Promise((resolve) => {
-    storeCache(uri).then((response) => {
-      if (response) {
-        resolve(response);
-      } else {
-        resolve(axiosGet(uri, { params, ...config }));
-      }
-    });
-  });
+  let response;
+  const storedResponse = storeCache(uri);
+  if(storedResponse) {
+    response = Promise.resolve(storedResponse);
+  } else {
+    response = axiosGet(uri, { params, ...config });
+  }
+  return response;
 };
