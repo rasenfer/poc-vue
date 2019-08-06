@@ -90,7 +90,6 @@ export default {
       return this.charactersResponse.data.pageMetadata;
     },
     loading: function() {
-      console.log(this.charactersResponse.config.fetching);
       return this.charactersResponse.config.fetching;
     }
   }
