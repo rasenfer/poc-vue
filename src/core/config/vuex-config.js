@@ -1,6 +1,7 @@
+import { store } from '@/core/store';
+import { log } from 'util';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { store } from '@/core/store';
 
 export default function(appStore) {
   if (appStore) {
@@ -10,9 +11,10 @@ export default function(appStore) {
 
     Vue.config.store = new Vuex.Store({
       ...store(appStore),
-      strict: debug
+      strict: debug,
     });
 
+    log('vuex configured');
     return Vue.config.store;
   }
 }

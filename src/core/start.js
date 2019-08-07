@@ -7,6 +7,7 @@ import store from '@/core/config/vuex-config';
 import { app as appComponent } from '@/core/components';
 
 import Vue from 'vue';
+import { log } from 'util';
 
 export default function(appName, MainView, appStore, appRoutes, apiUrls) {
   const production = process.env.NODE_ENV === 'production';
@@ -41,4 +42,6 @@ export default function(appName, MainView, appStore, appRoutes, apiUrls) {
   if (!production && window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {
     window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = app.constructor;
   }
+
+  log('%s started', appName);
 }
