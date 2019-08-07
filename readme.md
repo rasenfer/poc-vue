@@ -29,17 +29,19 @@ A futuro se espera proporcionar las siguientes configuraciones/funcionalidades:
 
 ## Estructura base
 
-    ├── App
-    ├── src
-    │   ├─ core #asd
-    │   │
-    │   ├─ main.js
-    │   ├─ app
-    │   ├─ assets
-    │   ├─ components
-    │   ├─ services
-    │   ├─ store
-    │   └─ views
+```Text
+├── App
+├── src
+│   ├─ core
+│   │
+│   ├─ main.js
+│   ├─ app
+│   ├─ assets
+│   ├─ components
+│   ├─ services
+│   ├─ store
+│   └─ views
+```
 
 ## Vuex + Axios
 
@@ -49,56 +51,56 @@ A futuro se espera proporcionar las siguientes configuraciones/funcionalidades:
 
 #### mapeo de nombres a alias asignados por basePath del servicio *RECOMENDADO*
 
-    ```javascript
-    //mapeo de nombres a alias asignados por basePath del servicio *RECOMENDADO*
-    import { service1, service2 } from '@/services';
-    import { mapServiceGetters } from '@/core/store';
+```javascript
+//mapeo de nombres a alias asignados por basePath del servicio *RECOMENDADO*
+import { service1, service2 } from '@/services';
+import { mapServiceGetters } from '@/core/store';
 
-    computed: {
-      ...mapServiceGetters({
-          alias1: service1, // service1.basePath = '/service1/path'
-          alias2: service2,
-          alias3: {service: service3, props: ['propUsedInPathVariable']}
-      })
-    }
-    ```
+computed: {
+    ...mapServiceGetters({
+    alias1: service1, // service1.basePath = '/service1/path'
+    alias2: service2,
+    alias3: {service: service3, props: ['propUsedInPathVariable']}
+  })
+}
+```
 
 #### mapeo de nombres a alias asignados por url de peticion
 
-    ```javascript
-    //mapeo de nombres a alias asignados por url de peticion
-    import { mapServiceGetters } from '@/core/store';
+```javascript
+//mapeo de nombres a alias asignados por url de peticion
+import { mapServiceGetters } from '@/core/store';
 
-    computed: {
-      ...mapServiceGetters({
-          alias1: '/service1/path',
-         alias2: '/service2/path',
-          alias3: {service: '/service3/path', props: ['propUsedInPathVariable']}
-      })
-    }
-    ```
+computed: {
+  ...mapServiceGetters({
+    alias1: '/service1/path',
+    alias2: '/service2/path',
+    alias3: {service: '/service3/path', props: ['propUsedInPathVariable']}
+  })
+}
+```
 
 #### mapeo automatico de nombres por basePath del servicio
 
-    ```javascript
-    //mapeo automatico de nombres por basePath del servicio
-    import { service1, service2 } from '@/services';
-    import { mapServiceGetters } from '@/core/store';
+```javascript
+//mapeo automatico de nombres por basePath del servicio
+import { service1, service2 } from '@/services';
+import { mapServiceGetters } from '@/core/store';
 
-    computed: {
-      ...mapServiceGetters([service1, service2])
-    }
-    ```
+computed: {
+  ...mapServiceGetters([service1, service2])
+}
+```
 
 #### mapeo automatico de nombres por url de peticion
 
-    ```javascript
-    //mapeo automatico de nombres por url de peticion
-    import { mapServiceGetters } from '@/core/store';
+```javascript
+//mapeo automatico de nombres por url de peticion
+import { mapServiceGetters } from '@/core/store';
 
-    computed: {
-      ...mapServiceGetters(['/service1/path', '/service2/path'])
-    }
-    ```
+computed: {
+  ...mapServiceGetters(['/service1/path', '/service2/path'])
+}
+```
 
 ## Core
