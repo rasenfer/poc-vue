@@ -30,17 +30,24 @@ A futuro se espera proporcionar las siguientes configuraciones/funcionalidades:
 ## Estructura base
 
 ```Text
-├── App
-├── src
-│   ├─ core
+├─ api             - recursos mock-server
+├─ public          - recursos html publicos (index.html, favicon.ico)
+├─ src
+│   ├─ core        - Contiene código importado de libreria core
 │   │
-│   ├─ main.js
-│   ├─ app
-│   ├─ assets
-│   ├─ components
-│   ├─ services
-│   ├─ store
-│   └─ views
+│   ├─ main.js     - Script inicial de la aplicacion que invoca al starter
+│   ├─ app         - configuraciones de aplicacion (routes, api-urls, etc. )
+│   ├─ assets      - recursos de aplicacion como imagenes o documentos
+│   ├─ components  - componentes para utilizar en vistas u otros componentes
+│   ├─ services    - servicios (lógica o llamadas api)
+│   ├─ store       - store de vuex
+│   └─ views       - componentes de tipo vistas / paginas navegables
+├─ .babelrc        - configuración babel-polyfill
+├─ .env.local      - configuración entorno mock server
+├─ .eslintrc       - configuración eslint
+├─ package.json    - configuración webpack
+├─ readme.md       - documentación
+├─ vue.config.js   - configuración pluging vue cli (serve-api-mocks)
 ```
 
 ## Vuex + Axios
