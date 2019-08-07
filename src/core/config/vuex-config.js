@@ -6,12 +6,10 @@ import Vuex from 'vuex';
 export default function(appStore) {
   if (appStore) {
     Vue.use(Vuex);
-    Vue.config.devtools = process.env.NODE_ENV !== 'production';
-    const debug = process.env.NODE_ENV !== 'production';
 
     Vue.config.store = new Vuex.Store({
       ...store(appStore),
-      strict: debug,
+      strict: Vue.config.devtools,
     });
 
     log('vuex configured');
