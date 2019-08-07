@@ -31,12 +31,11 @@ export default {
     }
   },
   computed: {
-    ...mapServiceGetters([charactersService]),
-    character: function() {
-      return this.charactersResponse.data;
-    },
+    ...mapServiceGetters({
+      character: {service: charactersService, props: ['id']}
+    }),
     loading: function() {
-      return this.charactersResponse.config.fetching;
+      return !this.characterResponse.status;
     }
   }
 };

@@ -4,43 +4,36 @@ import Vue from 'vue';
 export default {
   state: {},
   getters: {
-    getApiRequest: (state) => (url) => {
+    getApiRequest: state => url => {
       return (
         state[url] || {
           data: { id: null, results: [] },
-          config: { fetching: true }
         }
       );
-    }
+    },
   },
   mutations: {
     apiFetching: (state, { url, request, rootState }) => {
       Vue.set(state, url, {
         data: { id: null, results: [] },
-        config: { ...request, fetching: true }
+        config: { ...request },
       });
       lastUpdateMutation(rootState);
     },
     apiRequestDone: (state, { url, response, rootState }) => {
-      Vue.set(state, url, {
-        ...response,
-        config: { ...response.config, fetching: false }
-      });
+      Vue.set(state, url, { ...response });
       lastUpdateMutation(rootState);
     },
     apiRequestError: (state, { url, error, rootState }) => {
-      Vue.set(state, url, {
-        ...error,
-        config: { ...error.config, fetching: false }
-      });
+      Vue.set(state, url, { ...error });
       lastUpdateMutation(rootState);
     },
-    navigate: (state) => {
-      Object.keys(state).forEach((attribute) => {
+    navigate: state => {
+      Object.keys(state).forEach(attribute => {
         Vue.set(state, attribute, null);
         delete state[attribute];
       });
-    }
+    },
   },
   actions: {
     apiFetching: ({ commit, rootState }, payload) => {
@@ -51,6 +44,6 @@ export default {
     },
     apiRequestError: ({ commit, rootState }, payload) => {
       commit('apiRequestError', { ...payload, rootState });
-    }
-  }
+    },
+  },
 };

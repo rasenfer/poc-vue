@@ -21,7 +21,7 @@
         </tr>
       </tbody>
     </table>
-    <nav v-if="!loading && pageMetadata" aria-label="Page navigation example">
+    <nav v-if="!loading && charactersPageMetadata" aria-label="Page navigation example">
       <ul class="pagination">
         <li v-if="page !== 1" class="page-item">
           <router-link
@@ -31,15 +31,15 @@
           >
         </li>
         <div
-          v-for="pageNumber in pageMetadata.totalPages"
+          v-for="pageNumber in charactersPageMetadata.totalPages"
           :key="`page-${pageNumber}`"
         >
           <li
             v-if="
               pageNumber == page ||
                 (page - 5 < 0 && pageNumber < 10) ||
-                (page + 5 > pageMetadata.totalPages &&
-                  pageNumber > pageMetadata.totalPages - 9) ||
+                (page + 5 > charactersPageMetadata.totalPages &&
+                  pageNumber > charactersPageMetadata.totalPages - 9) ||
                 (pageNumber < page && pageNumber > page - 5) ||
                 (pageNumber > page && pageNumber < page + 5)
             "
@@ -52,7 +52,7 @@
             >
           </li>
         </div>
-        <li v-if="page !== pageMetadata.totalPages" class="page-item">
+        <li v-if="page !== charactersPageMetadata.totalPages" class="page-item">
           <router-link
             class="page-link"
             :to="{ path: '/characters', query: { page: page + 1 } }"
@@ -83,14 +83,8 @@ export default {
   },
   computed: {
     ...mapServiceGetters([charactersService]),
-    characters: function() {
-      return this.charactersResponse.data.content;
-    },
-    pageMetadata: function() {
-      return this.charactersResponse.data.pageMetadata;
-    },
     loading: function() {
-      return this.charactersResponse.config.fetching;
+      return !this.charactersResponse.status;
     }
   }
 };
