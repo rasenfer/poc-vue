@@ -1,4 +1,4 @@
-import store from '../store/config/store-config';
+import store from '../store';
 import { log } from 'util';
 import Vue from 'vue';
 import Vuex from 'vuex';

@@ -1,15 +1,15 @@
-import '../config/polyfill-config';
-import '../config/bootstrap-config';
-import '../config/lodash-config';
-import '../api/api-config';
-import router from '../config/router-config';
-import store from '../config/vuex-config';
-import appComponent from '../components/app/App';
+import './config/polyfill-config';
+import './config/bootstrap-config';
+import './config/lodash-config';
+import './api';
+import router from './config/router-config';
+import store from './config/vuex-config';
+import appComponent from './components/app/App';
 
 import Vue from 'vue';
 import { log } from 'util';
 
-export default function(appName, MainView, appStore, appRoutes, apiUrls) {
+export function start(appName, MainView, appStore, appRoutes, apiUrls) {
   const production = process.env.NODE_ENV === 'production';
   Vue.config.devtools = !production;
   Vue.config.productionTip = production;
@@ -20,7 +20,7 @@ export default function(appName, MainView, appStore, appRoutes, apiUrls) {
     Vue.config.dev = {
       lastUpdate: new Date().getTime(),
       restoring: false,
-      timeouts: {}
+      timeouts: {},
     };
   }
 
@@ -31,12 +31,12 @@ export default function(appName, MainView, appStore, appRoutes, apiUrls) {
       render(appComponent, {
         props: {
           appName,
-          MainView
+          MainView,
         },
         scopedSlots: {
-          default: () => render(MainView)
-        }
-      })
+          default: () => render(MainView),
+        },
+      }),
   }).$mount('#app');
 
   if (!production && window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {

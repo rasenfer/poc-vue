@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import apiRequest from '../modules/api-module';
-import router from '../modules/router-module';
+import apiRequest from './modules/api-module';
+import router from './modules/router-module';
 
 export default function(store) {
   return {
@@ -8,16 +8,18 @@ export default function(store) {
     state: {
       appName: Vue.config.appName,
       lastUpdate: new Date().getTime(),
-      ...store.state
+      ...store.state,
     },
     getters: {
       ...store.getters,
-      getLastUpdate: state => () => state.lastUpdate
+      getLastUpdate: state => () => state.lastUpdate,
     },
     modules: {
       apiRequest,
       router,
-      ...store.modules
-    }
+      ...store.modules,
+    },
   };
 }
+
+export { default as mapApiGetters } from './utils/map-api-getters';
