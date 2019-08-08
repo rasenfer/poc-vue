@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import lastUpdateMutation from '@/core/store/utils/LastUpdateMutation';
+import refreshLastUpdate from '../utils/refresh-last-update';
 
 export default {
   state: {
@@ -16,7 +16,7 @@ export default {
       state.query = to.query;
       state.params = to.params;
       state.fullPath = to.fullPath;
-      lastUpdateMutation(rootState);
+      refreshLastUpdate(rootState);
     }
   },
   actions: {

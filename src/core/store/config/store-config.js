@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import apiRequest from './api-module/ApiModule';
-import router from './router-module/RouterModule';
+import apiRequest from '../modules/api-module';
+import router from '../modules/router-module';
 
 export default function(store) {
   return {

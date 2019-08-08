@@ -1,2 +1,2 @@
-export {default as menuService} from './menu-service/MenuService';
-export {default as charactersService} from './characters-service/CharactersService';
+export {default as menuService} from '@/services/menu-service/menu-service';
+export {default as charactersService} from '@/services/characters-service/characters-service';

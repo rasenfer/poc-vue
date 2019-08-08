@@ -1,4 +1,4 @@
-import lastUpdateMutation from '@/core/store/utils/LastUpdateMutation';
+import refreshLastUpdate from '../utils/refresh-last-update';
 import Vue from 'vue';
 
 export default {
@@ -18,15 +18,15 @@ export default {
         data: { id: null, results: [] },
         config: { ...request },
       });
-      lastUpdateMutation(rootState);
+      refreshLastUpdate(rootState);
     },
     apiRequestDone: (state, { url, response, rootState }) => {
       Vue.set(state, url, { ...response });
-      lastUpdateMutation(rootState);
+      refreshLastUpdate(rootState);
     },
     apiRequestError: (state, { url, error, rootState }) => {
       Vue.set(state, url, { ...error });
-      lastUpdateMutation(rootState);
+      refreshLastUpdate(rootState);
     },
     navigate: state => {
       Object.keys(state).forEach(attribute => {

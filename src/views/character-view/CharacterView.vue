@@ -16,7 +16,7 @@
 <script>
 import VueTypes from 'vue-types';
 import { charactersService } from '@/services';
-import { mapServiceGetters } from '@/core/store';
+import { mapApiGetters } from '@/core/store';
 
 export default {
   props: {
@@ -31,8 +31,8 @@ export default {
     }
   },
   computed: {
-    ...mapServiceGetters({
-      character: {service: charactersService, props: ['id']}
+    ...mapApiGetters({
+      character: { service: charactersService, props: ['id'] }
     }),
     loading: function() {
       return !this.characterResponse.status;

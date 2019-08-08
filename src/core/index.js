@@ -1,1 +1,1 @@
-export { default as start } from '@/core/start';
+export { default as start } from './utils/start.js';

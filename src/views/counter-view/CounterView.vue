@@ -13,8 +13,7 @@
 
 <script>
 import { Counter, CounterState } from '@/components';
-import mapActions from './CounterMapActions';
-import mapState from './CounterMapState';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   data() {
@@ -27,10 +26,10 @@ export default {
     CounterState
   },
   methods: {
-    ...mapActions
+    ...mapActions(['countIncrement', 'countDecrement'])
   },
   computed: {
-    ...mapState
+    ...mapState(['counter'])
   }
 };
 </script>

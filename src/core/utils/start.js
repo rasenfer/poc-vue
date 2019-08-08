@@ -1,10 +1,10 @@
-import '@/core/config/polyfill-config';
-import '@/core/config/bootstrap-config';
-import '@/core/config/lodash-config';
-import '@/core/api/Api';
-import router from '@/core/config/router-config';
-import store from '@/core/config/vuex-config';
-import { app as appComponent } from '@/core/components';
+import '../config/polyfill-config';
+import '../config/bootstrap-config';
+import '../config/lodash-config';
+import '../api/api-config';
+import router from '../config/router-config';
+import store from '../config/vuex-config';
+import appComponent from '../components/app/App';
 
 import Vue from 'vue';
 import { log } from 'util';
