@@ -3,11 +3,11 @@ import VueTypes from 'vue-types';
 
 export default Vue.component('app', {
   props: {
-    MainView: VueTypes.object.isRequired
+    MainView: VueTypes.object.isRequired,
   },
   render: function(render) {
     return render('div', { attrs: { id: Vue.config.appName } }, [
-      render(this.MainView)
+      render(this.MainView),
     ]);
   },
   watch: {
@@ -26,12 +26,12 @@ export default Vue.component('app', {
         Vue.config.dev.restoring = false;
         this.$forceUpdate();
       }
-    }
+    },
   },
   computed: {
     name: () => Vue.config.appName,
     route: function() {
       return this.$store.state.router;
-    }
-  }
+    },
+  },
 });

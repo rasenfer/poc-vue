@@ -6,7 +6,7 @@ export default {
     },
     countDecrement(state) {
       state.counter--;
-    }
+    },
   },
   actions: {
     countIncrement({ commit }) {
@@ -14,6 +14,6 @@ export default {
     },
     countDecrement({ commit }) {
       commit('countDecrement');
-    }
-  }
+    },
+  },
 };

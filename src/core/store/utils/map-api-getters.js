@@ -13,11 +13,11 @@ function mapService(service, getters, alias, props) {
     };
     getters[`${alias || name}Response`] = responseGetter;
     getters[alias || name] = $this => {
-      const data = responseGetter($this).data;
+      const { data } = responseGetter($this);
       return (data && data.content) || data;
     };
     getters[`${alias || name}PageMetadata`] = $this => {
-      const data = responseGetter($this).data;
+      const { data } = responseGetter($this);
       return data && data.pageMetadata;
     };
     service.getters &&
@@ -37,15 +37,9 @@ export default function(maps = []) {
     });
   } else {
     Object.entries(maps).forEach(entry => {
-      const alias = entry[0];
-      const map = entry[1];
+      const [alias, map] = entry;
       if (entry[0] !== 'props') {
-        mapService(
-          map.service || map,
-          getters,
-          alias,
-          map.props,
-        );
+        mapService(map.service || map, getters, alias, map.props);
       }
     });
   }

@@ -8,7 +8,7 @@ axios.interceptors.request.use(apiInterceptor.requestHandler);
 axios.interceptors.request.use(storeApiInterceptor.requestHandler);
 axios.interceptors.response.use(
   storeApiInterceptor.responseHandler,
-  storeApiInterceptor.errorHandler
+  storeApiInterceptor.errorHandler,
 );
 
 function getStoredResponse(uri) {

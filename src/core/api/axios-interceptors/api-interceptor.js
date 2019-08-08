@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 export default {
   requestHandler: function(request) {
-    const apiUrls = Vue.config.apiUrls;
+    const { apiUrls } = Vue.config;
     request.baseURL =
       (request.proxy && apiUrls[request.proxy]) ||
       apiUrls[process.env.API] ||
@@ -12,5 +12,5 @@ export default {
     }
     request.headers['X-Requested-With'] = Vue.config.appName;
     return request;
-  }
+  },
 };
