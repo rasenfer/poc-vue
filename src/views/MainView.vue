@@ -21,8 +21,9 @@
 </template>
 
 <script>
-import { menuService } from '@/services';
-import { Header, Menu } from '@/components';
+import menuService from '@/services/menu-service';
+import Header from '@/components/Header';
+import Menu from '@/components/Menu';
 
 import logo from '@/assets/logo.png';
 
@@ -42,4 +43,4 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./main-view-style.scss" />
+<style lang="scss" src="@/views/styles/main-view-style.scss" />

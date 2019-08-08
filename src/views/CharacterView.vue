@@ -15,7 +15,7 @@
 
 <script>
 import VueTypes from 'vue-types';
-import { charactersService } from '@/services';
+import charactersService from '@/services/characters-service';
 import { mapApiGetters } from '@/core/store';
 
 export default {

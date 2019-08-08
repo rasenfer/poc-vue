@@ -1,9 +1,7 @@
-import {
-  CounterView,
-  CharacterListView,
-  CharacterView,
-  AboutView
-} from '@/views';
+import CounterView from '@/views/CounterView';
+import CharacterListView from '@/views/CharacterListView';
+import CharacterView from '@/views/CharacterView';
+import AboutView from '@/views/AboutView';
 
 export default [
   { name: 'counter', path: '/counter', component: CounterView },
@@ -13,13 +11,13 @@ export default [
     path: '/characters',
     component: CharacterListView,
     props: route => ({
-      page: Number(route.query.page || 1)
-    })
+      page: Number(route.query.page || 1),
+    }),
   },
   {
     name: 'character',
     path: '/character/:id',
     component: CharacterView,
-    props: route => ({ id: Number(route.params.id) })
-  }
+    props: route => ({ id: Number(route.params.id) }),
+  },
 ];

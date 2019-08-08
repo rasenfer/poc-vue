@@ -27,4 +27,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss" src="./header-style.scss" />
+<style scoped lang="scss" src="@/components/styles/header-style.scss" />

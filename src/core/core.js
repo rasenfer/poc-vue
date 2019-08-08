@@ -4,7 +4,7 @@ import './config/lodash-config';
 import './api';
 import router from './config/router-config';
 import store from './config/vuex-config';
-import appComponent from './components/app/App';
+import appComponent from './components/App';
 
 import Vue from 'vue';
 import { log } from 'util';

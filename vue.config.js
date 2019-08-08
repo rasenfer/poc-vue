@@ -1,6 +1,5 @@
 const packageConf = require('./package.json');
 const apiMock = require('./api/apiMock.js');
-const path = require('path');
 const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin');
 process.env.VUE_APP_VERSION = packageConf.version;
 module.exports = {

@@ -28,6 +28,6 @@ export default {
 };
 </script>
 
-<style scoped lang="scss" src="./counter-style.scss" />
+<style scoped lang="scss" src="@/components/styles/counter-style.scss" />
 
 

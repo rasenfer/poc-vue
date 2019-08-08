@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import { Counter, CounterState } from '@/components';
+import Counter from '@/components/Counter';
+import CounterState from '@/components/CounterState';
 import { mapActions, mapState } from 'vuex';
 
 export default {

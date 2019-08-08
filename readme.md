@@ -42,51 +42,41 @@ A futuro se espera proporcionar las siguientes configuraciones/funcionalidades:
 ## Estructura base
 
 ```Text
-├─ api                                      - recursos mock-server.
-├─ public                                   - recursos html publicos (index.html, favicon.ico).
+├─ api                                  - recursos mock-server.
+├─ public                               - recursos html publicos (index.html, favicon.ico).
 ├─ src
-│   ├─ core                                 - Contiene código importado de libreria core.
+│   ├─ core                             - Contiene código importado de libreria core.
 │   │
-│   ├─ main.js                              - Script inicial de la aplicacion que invoca al starter.
-│   ├─ app                                  - configuraciones de aplicacion (routes, api-urls, etc. ).
-│   │   ├─ api-urls.json                    - configuracion de urls de apis.
-│   │   └─ routes.js                        - configuracion vue-router de la aplicación.
-│   │   └─ app-config-helpers.js            - [OPCIONAL] scripts de configuracion de aplicación adicionales
-│   ├─ assets                               - recursos de aplicacion como imagenes o documentos.
-│   ├─ components                           - componentes para utilizar en vistas u otros componentes.
-│   │   ├─ components.js                         - exports de todos los componentes.
-│   │   └─ name                             - carpeta de componente.
-│   │       ├─ Name.vue                     - componente tipo single-file
-│   │       ├─ name-style.scss              - [OPCIONAL] hoja de estilo sass-css del componente.
-│   │       ├─ name.js                      - [OPCIONAL] codigo js adicional del componente.
-│   │       └─ name-helpers.js              - [OPCIONAL] scripts adicionales del componente.
-│   ├─ services                             - servicios (lógica o llamadas api).
-│   │   ├─ services.js                         - exports de todos los servicios.
-│   │   └─ name-service                     - carpeta de servicios.
-│   │       ├─ name-service.js              - js del servicio.
-│   │       └─ name-service-helpers.js      - [OPCIONAL] scripts adicionales del servicio.
-│   ├─ store                                - store de vuex.
-│   │   ├─ store.js                         - configuración store de vuex para la aplicación
-│   │   ├─ actions.js                       - [OPCIONAL] acciones del store
-│   │   ├─ mutations.js                     - [OPCIONAL] mutaciones del store
-│   │   └─ modules                          - carpeta de modulos store.
-│   │       └─ name-module                  - carpeta de modulo store
-│   │           ├─ name-module.js           - modulo store
-│   │           ├─ name-module-actions.js   - [OPCIONAL] acciones del modulo store
-│   │           └─ name-module-mutations.js - [OPCIONAL] mutaciones del modulo store
-│   └─ views                                - componentes de tipo vistas / paginas navegables.
-│       ├─ views.js                         - exports de todos los componentes.
-│       └─ name-view                        - carpeta de vista.
-│           ├─ NameView.vue                 - vista tipo single-file.
-│           ├─ name-view-style.scss         - [OPCIONAL] hoja de estilo sass-css de la vista.
-│           ├─ name-view.js                 - [OPCIONAL] codigo js adicional de la vista.
-│           └─ name-view-helpers.js         - [OPCIONAL] scripts adicionales de la vista.
-├─ .babelrc                                 - configuración babel-polyfill.
-├─ .env.local                               - configuración entorno mock server.
-├─ .eslintrc                                - configuración eslint.
-├─ package.json                             - configuración webpack.
-├─ readme.md                                - documentación.
-├─ vue.config.js                            - configuración pluging vue cli (serve-api-mocks).
+│   ├─ main.js                          - Script inicial de la aplicacion que invoca al starter.
+│   ├─ app                              - configuraciones de aplicacion (routes, api-urls, etc. ).
+│   │   ├─ api-urls.json                - configuracion de urls de apis.
+│   │   ├─ routes.js                    - configuracion vue-router de la aplicación.
+│   │   └─ app-config-helpers.js        - [OPCIONAL] scripts de configuracion de aplicación adicionales
+│   ├─ assets                           - recursos de aplicacion como imagenes o documentos.
+│   ├─ components                       - componentes para utilizar en vistas u otros componentes.
+│   │   ├─ styles                       - estilos separados de los componentes.
+│   │   │   └─ name-style.scss          - [OPCIONAL] hoja de estilo sass-css del componente.
+│   │   └─ Name.vue                     - componente tipo single-file
+│   ├─ services                         - servicios (lógica o llamadas api).
+│   │   └─ name-service.js              - js del servicio.
+│   ├─ store                            - store de vuex.
+│   │   ├─ store.js                     - configuración store de vuex para la aplicación
+│   │   ├─ actions.js                   - [OPCIONAL] acciones del store
+│   │   ├─ mutations.js                 - [OPCIONAL] mutaciones del store
+│   │   └─ modules                      - carpeta de modulos store.
+│   │       ├─ name-module.js           - modulo store
+│   │       ├─ name-module-actions.js   - [OPCIONAL] acciones del modulo store
+│   │       └─ name-module-mutations.js - [OPCIONAL] mutaciones del modulo store
+│   └─ views                            - componentes de tipo vistas / paginas navegables.
+│       ├─ styles                       - estilos separados de los componentes.
+│       │   └─ name-view-style.scss     - [OPCIONAL] hoja de estilo sass-css de la vista.
+│       └─ NameView.vue                 - vista tipo single-file.
+├─ .babelrc                             - configuración babel-polyfill.
+├─ .env.local                           - configuración entorno mock server.
+├─ .eslintrc                            - configuración eslint.
+├─ package.json                         - configuración webpack.
+├─ readme.md                            - documentación.
+├─ vue.config.js                        - configuración pluging vue cli (serve-api-mocks).
 ```
 
 ## Starter
