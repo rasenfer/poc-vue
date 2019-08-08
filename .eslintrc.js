@@ -9,6 +9,7 @@ module.exports = {
   extends: ['plugin:vue/essential', 'eslint:recommended'],
   rules: {
     quotes: ['warn', 'single', { avoidEscape: true }],
+    'max-len': ['warn', { code: 120 }],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'no-param-reassign': 'error',
