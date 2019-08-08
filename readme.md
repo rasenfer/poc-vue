@@ -54,19 +54,19 @@ A futuro se espera proporcionar las siguientes configuraciones/funcionalidades:
 │   │   └─ app-config-helpers.js            - [OPCIONAL] scripts de configuracion de aplicación adicionales
 │   ├─ assets                               - recursos de aplicacion como imagenes o documentos.
 │   ├─ components                           - componentes para utilizar en vistas u otros componentes.
-│   │   ├─ index.js                         - exports de todos los componentes.
+│   │   ├─ components.js                         - exports de todos los componentes.
 │   │   └─ name                             - carpeta de componente.
 │   │       ├─ Name.vue                     - componente tipo single-file
 │   │       ├─ name-style.scss              - [OPCIONAL] hoja de estilo sass-css del componente.
 │   │       ├─ name.js                      - [OPCIONAL] codigo js adicional del componente.
 │   │       └─ name-helpers.js              - [OPCIONAL] scripts adicionales del componente.
 │   ├─ services                             - servicios (lógica o llamadas api).
-│   │   ├─ index.js                         - exports de todos los servicios.
+│   │   ├─ services.js                         - exports de todos los servicios.
 │   │   └─ name-service                     - carpeta de servicios.
 │   │       ├─ name-service.js              - js del servicio.
 │   │       └─ name-service-helpers.js      - [OPCIONAL] scripts adicionales del servicio.
 │   ├─ store                                - store de vuex.
-│   │   ├─ index.js                         - configuración store de vuex para la aplicación
+│   │   ├─ store.js                         - configuración store de vuex para la aplicación
 │   │   ├─ actions.js                       - [OPCIONAL] acciones del store
 │   │   ├─ mutations.js                     - [OPCIONAL] mutaciones del store
 │   │   └─ modules                          - carpeta de modulos store.
@@ -75,7 +75,7 @@ A futuro se espera proporcionar las siguientes configuraciones/funcionalidades:
 │   │           ├─ name-module-actions.js   - [OPCIONAL] acciones del modulo store
 │   │           └─ name-module-mutations.js - [OPCIONAL] mutaciones del modulo store
 │   └─ views                                - componentes de tipo vistas / paginas navegables.
-│       ├─ index.js                         - exports de todos los componentes.
+│       ├─ views.js                         - exports de todos los componentes.
 │       └─ name-view                        - carpeta de vista.
 │           ├─ NameView.vue                 - vista tipo single-file.
 │           ├─ name-view-style.scss         - [OPCIONAL] hoja de estilo sass-css de la vista.
