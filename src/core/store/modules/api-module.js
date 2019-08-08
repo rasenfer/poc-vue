@@ -7,16 +7,16 @@ export default {
     getApiRequest: state => url => {
       return (
         state[url] || {
-          data: { id: null, results: [] },
+          data: { id: null, results: [] }
         }
       );
-    },
+    }
   },
   mutations: {
     apiFetching: (state, { url, request, rootState }) => {
       Vue.set(state, url, {
         data: { id: null, results: [] },
-        config: { ...request },
+        config: { ...request }
       });
       refreshLastUpdate(rootState);
     },
@@ -33,7 +33,7 @@ export default {
         Vue.set(state, attribute, null);
         delete state[attribute];
       });
-    },
+    }
   },
   actions: {
     apiFetching: ({ commit, rootState }, payload) => {
@@ -44,6 +44,6 @@ export default {
     },
     apiRequestError: ({ commit, rootState }, payload) => {
       commit('apiRequestError', { ...payload, rootState });
-    },
-  },
+    }
+  }
 };

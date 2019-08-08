@@ -6,7 +6,7 @@ export default function(routes) {
   if (routes) {
     Vue.use(VueRouter);
     const router = new VueRouter({
-      routes,
+      routes
     });
 
     Vue.config.router = router;

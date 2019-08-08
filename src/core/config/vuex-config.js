@@ -9,7 +9,7 @@ export default function(appStore) {
 
     Vue.config.store = new Vuex.Store({
       ...store(appStore),
-      strict: Vue.config.devtools,
+      strict: Vue.config.devtools
     });
 
     log('vuex configured');

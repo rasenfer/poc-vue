@@ -20,7 +20,7 @@ export function start(appName, MainView, appStore, appRoutes, apiUrls) {
     Vue.config.dev = {
       lastUpdate: new Date().getTime(),
       restoring: false,
-      timeouts: {},
+      timeouts: {}
     };
   }
 
@@ -31,12 +31,12 @@ export function start(appName, MainView, appStore, appRoutes, apiUrls) {
       render(appComponent, {
         props: {
           appName,
-          MainView,
+          MainView
         },
         scopedSlots: {
-          default: () => render(MainView),
-        },
-      }),
+          default: () => render(MainView)
+        }
+      })
   }).$mount('#app');
 
   if (!production && window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {

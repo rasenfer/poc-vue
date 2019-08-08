@@ -11,13 +11,13 @@ export default [
     path: '/characters',
     component: CharacterListView,
     props: route => ({
-      page: Number(route.query.page || 1),
-    }),
+      page: Number(route.query.page || 1)
+    })
   },
   {
     name: 'character',
     path: '/character/:id',
     component: CharacterView,
-    props: route => ({ id: Number(route.params.id) }),
-  },
+    props: route => ({ id: Number(route.params.id) })
+  }
 ];

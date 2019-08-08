@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import Counter from '@/components/Counter';
-import CounterState from '@/components/CounterState';
-import { mapActions, mapState } from 'vuex';
+import Counter from "@/components/Counter";
+import CounterState from "@/components/CounterState";
+import { mapActions, mapState } from "vuex";
 
 export default {
   data() {
@@ -27,10 +27,10 @@ export default {
     CounterState
   },
   methods: {
-    ...mapActions(['countIncrement', 'countDecrement'])
+    ...mapActions(["countIncrement", "countDecrement"])
   },
   computed: {
-    ...mapState(['counter'])
+    ...mapState(["counter"])
   }
 };
 </script>

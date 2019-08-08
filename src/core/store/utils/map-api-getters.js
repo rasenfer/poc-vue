@@ -1,8 +1,5 @@
 function mapService(service, getters, alias, props) {
-  let name =
-    typeof service === 'string' || service instanceof String
-      ? service
-      : service.name || service.basepath;
+  let name = typeof service === 'string' || service instanceof String ? service : service.name || service.basepath;
   if (name) {
     name = name.startsWith('/') ? name.replace('/', '') : name;
     const basepath = service.basepath || `/${name}`;

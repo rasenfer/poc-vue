@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import VueTypes from 'vue-types';
+import VueTypes from "vue-types";
 export default {
   props: {
     toggle: VueTypes.string,

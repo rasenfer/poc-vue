@@ -16,9 +16,7 @@ export default {
   responseHandler: function(response) {
     if (
       response.headers[CONTENT_TYPE_HEADER] &&
-      response.headers[CONTENT_TYPE_HEADER].toLowerCase().includes(
-        'application/json',
-      )
+      response.headers[CONTENT_TYPE_HEADER].toLowerCase().includes('application/json')
     ) {
       const url = getApiUrl(response.config);
       const { store } = Vue.config;
@@ -31,5 +29,5 @@ export default {
     const { store } = Vue.config;
     store.dispatch('apiRequestError', { url, error });
     return error;
-  },
+  }
 };

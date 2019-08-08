@@ -6,17 +6,11 @@ import Vue from 'vue';
 
 axios.interceptors.request.use(apiInterceptor.requestHandler);
 axios.interceptors.request.use(storeApiInterceptor.requestHandler);
-axios.interceptors.response.use(
-  storeApiInterceptor.responseHandler,
-  storeApiInterceptor.errorHandler,
-);
+axios.interceptors.response.use(storeApiInterceptor.responseHandler, storeApiInterceptor.errorHandler);
 
 function getStoredResponse(uri) {
   let response;
-  if (
-    Vue.config.devtools &&
-    Vue.config.dev.lastUpdate > Vue.config.store.getters.getLastUpdate()
-  ) {
+  if (Vue.config.devtools && Vue.config.dev.lastUpdate > Vue.config.store.getters.getLastUpdate()) {
     response = Vue.config.store.getters.getApiRequest(uri.split('?')[0]);
   } else {
     response = null;

@@ -4,16 +4,16 @@ export default {
     return [
       {
         name: 'Counter',
-        path: '/counter',
+        path: '/counter'
       },
       {
         name: 'Characters',
-        path: '/characters',
+        path: '/characters'
       },
       {
         name: 'About',
-        path: '/about',
-      },
+        path: '/about'
+      }
     ];
-  },
+  }
 };

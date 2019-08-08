@@ -7,7 +7,7 @@ export default {
     path: '',
     query: {},
     params: {},
-    fullPath: '',
+    fullPath: ''
   },
   mutations: {
     navigate: (state, { to, rootState }) => {
@@ -17,13 +17,13 @@ export default {
       state.params = to.params;
       state.fullPath = to.fullPath;
       refreshLastUpdate(rootState);
-    },
+    }
   },
   actions: {
     navigate({ commit, rootState }, to) {
       if (!Vue.config.dev.restoring) {
         commit('navigate', { to, rootState });
       }
-    },
-  },
+    }
+  }
 };

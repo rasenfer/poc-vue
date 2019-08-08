@@ -12,7 +12,7 @@ function responseHandler(response, headers) {
       entry.id = url[url.length - 1];
     });
 
-    const {link} = headers;
+    const { link } = headers;
     if (link) {
       const totalPages = Number(link.split(patternLast)[1]);
       if (totalPages) {
