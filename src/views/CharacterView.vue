@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div v-if="loading">loading... {{ loading }}</div>
+    <div v-if="loading">
+      loading... {{ loading }}
+    </div>
     <div v-if="!loading">
       <div>Name: {{ character.name }}</div>
       <div>
@@ -14,21 +16,12 @@
 </template>
 
 <script>
-import VueTypes from 'vue-types';
 import charactersService from '@/services/characters-service';
 import { mapApiGetters } from '@/core/store';
 
 export default {
   props: {
-    id: VueTypes.number.isRequired
-  },
-  watch: {
-    id: {
-      immediate: true,
-      handler: function(id) {
-        charactersService.get(id);
-      }
-    }
+    id: { type: Number, required: true }
   },
   computed: {
     ...mapApiGetters({
@@ -36,6 +29,14 @@ export default {
     }),
     loading: function() {
       return !this.characterResponse.status;
+    }
+  },
+  watch: {
+    id: {
+      immediate: true,
+      handler: function(id) {
+        charactersService.get(id);
+      }
     }
   }
 };

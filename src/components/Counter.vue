@@ -2,15 +2,19 @@
   <div class="counter">
     <input v-model="counter" />
     {{ counter }}
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
+    <button @click="increment">
+      +
+    </button>
+    <button @click="decrement">
+      -
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    start: Number
+    start: { type: Number, default: 0 }
   },
   data: function() {
     return {

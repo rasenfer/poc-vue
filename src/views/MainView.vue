@@ -3,10 +3,7 @@
     <div class="container-fluid">
       <Header class="header row" toggle="menu-view" :logo="logo" />
       <div class="row body withFooter">
-        <div
-          id="menu-view"
-          class="menu withFooter col-sm-2 collapse navbar-collapse"
-        >
+        <div id="menu-view" class="menu withFooter col-sm-2 collapse navbar-collapse">
           <Menu :links="links" />
         </div>
         <div class="content withFooter">

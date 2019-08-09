@@ -12,17 +12,16 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon" />
     </button>
   </div>
 </template>
 
 <script>
-import VueTypes from 'vue-types';
 export default {
   props: {
-    toggle: VueTypes.string,
-    logo: VueTypes.string.isRequired
+    toggle: { type: Boolean, default: false },
+    logo: { type: String, required: true }
   }
 };
 </script>

@@ -1,7 +1,9 @@
 <template>
   <ul class="navbar-nav">
-    <li class="nav-item" v-for="link in links" :key="link.name">
-      <router-link class="nav-link" :to="link.path">{{link.name}}</router-link>
+    <li v-for="link in links" :key="link.name" class="nav-item">
+      <router-link class="nav-link" :to="link.path">
+        {{ link.name }}
+      </router-link>
     </li>
   </ul>
 </template>
@@ -11,12 +13,15 @@ import VueTypes from 'vue-types';
 
 export default {
   props: {
-    links: VueTypes.arrayOf(
-      VueTypes.shape({
-        name: VueTypes.string.isRequired,
-        path: VueTypes.string.isRequired
-      })
-    ).isRequired
+    links: {
+      type: VueTypes.arrayOf(
+        VueTypes.shape({
+          name: VueTypes.string.isRequired,
+          path: VueTypes.string.isRequired
+        })
+      ),
+      required: true
+    }
   }
 };
 </script>

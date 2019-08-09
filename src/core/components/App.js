@@ -1,12 +1,14 @@
 import Vue from 'vue';
-import VueTypes from 'vue-types';
 
 export default Vue.component('app', {
   props: {
-    MainView: VueTypes.object.isRequired
+    mainView: { type: Object, required: true }
   },
-  render: function(render) {
-    return render('div', { attrs: { id: Vue.config.appName } }, [render(this.MainView)]);
+  computed: {
+    name: () => Vue.config.appName,
+    route: function() {
+      return this.$store.state.router;
+    }
   },
   watch: {
     route: function(route, prevRoute) {
@@ -25,10 +27,7 @@ export default Vue.component('app', {
       }
     }
   },
-  computed: {
-    name: () => Vue.config.appName,
-    route: function() {
-      return this.$store.state.router;
-    }
+  render: function(render) {
+    return render('div', { attrs: { id: Vue.config.appName } }, [render(this.MainView)]);
   }
 });
