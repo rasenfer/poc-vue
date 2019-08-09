@@ -21,17 +21,14 @@
 </template>
 
 <script>
-import menuService from "@/services/menu-service";
-import Header from "@/components/Header";
-import Menu from "@/components/Menu";
+import menuService from '@/services/menu-service';
+import Header from '@/components/Header';
+import Menu from '@/components/Menu';
 
-import logo from "@/assets/logo.png";
+import logo from '@/assets/logo.png';
 
 export default {
-  components: {
-    Menu,
-    Header
-  },
+  components: { Menu, Header },
   data: function() {
     return {
       logo,
