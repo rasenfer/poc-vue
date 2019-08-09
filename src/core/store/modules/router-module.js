@@ -21,7 +21,8 @@ export default {
   },
   actions: {
     navigate({ commit, rootState }, to) {
-      if (Vue.config.devtools && !Vue.config.dev.restoring) {
+      console.log('navigate', !Vue.config.devtools || !Vue.config.dev.restoring);
+      if (!Vue.config.devtools || !Vue.config.dev.restoring) {
         commit('navigate', { to, rootState });
       }
     }

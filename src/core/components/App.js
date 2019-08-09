@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 export default Vue.component('app', {
   props: {
+    appName: { type: String, required: true},
     mainView: { type: Object, required: true }
   },
   computed: {
@@ -28,6 +29,6 @@ export default Vue.component('app', {
     }
   },
   render: function(render) {
-    return render('div', { attrs: { id: Vue.config.appName } }, [render(this.MainView)]);
+    return render('div', { attrs: { id: this.appName } }, [render(this.mainView)]);
   }
 });

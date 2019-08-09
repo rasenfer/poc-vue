@@ -9,17 +9,10 @@
 </template>
 
 <script>
-import VueTypes from 'vue-types';
-
 export default {
   props: {
     links: {
-      type: VueTypes.arrayOf(
-        VueTypes.shape({
-          name: VueTypes.string.isRequired,
-          path: VueTypes.string.isRequired
-        })
-      ),
+      type: Array,
       required: true
     }
   }

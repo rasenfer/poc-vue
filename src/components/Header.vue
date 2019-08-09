@@ -20,7 +20,7 @@
 <script>
 export default {
   props: {
-    toggle: { type: Boolean, default: false },
+    toggle: { type: String, required: true },
     logo: { type: String, required: true }
   }
 };

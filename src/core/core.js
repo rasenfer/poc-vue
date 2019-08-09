@@ -31,7 +31,7 @@ export function start(appName, MainView, appStore, appRoutes, apiUrls) {
       render(appComponent, {
         props: {
           appName,
-          MainView
+          mainView: MainView
         },
         scopedSlots: {
           default: () => render(MainView)
