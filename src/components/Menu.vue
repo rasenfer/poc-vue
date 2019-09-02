@@ -9,10 +9,18 @@
 </template>
 
 <script>
+import VueTypes from 'vue-types';
+
 export default {
   props: {
     links: {
       type: Array,
+      validator: VueTypes.arrayOf(
+        VueTypes.shape({
+          name: { type: String, required: true },
+          path: { type: String, required: true }
+        })
+      ).validator,
       required: true
     }
   }

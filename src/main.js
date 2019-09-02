@@ -8,6 +8,4 @@ import MainView from '@/views/MainView';
 
 const packageInfo = require('../package.json');
 
-console.log('MainView', MainView);
-
 start(packageInfo.name, MainView, store, routes, apiUrls);
