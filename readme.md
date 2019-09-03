@@ -25,9 +25,9 @@ Ademas proporciona las siguientes funcionalidades:
 
 Se ha procurado implementar todo el core conforme a los estandares de cada libreria.
 
-En vue evitando la herencia y resolviendo la reutilización mediante composicion, mediante implementaciones muy similares a como trabaja vuex, de manera que los componentes tengan que utilizar conscientemente las gestiones de estado.
+En vue + vuex evitando la herencia y resolviendo la reutilización mediante composicion, utilizando implementaciones muy similares a como trabaja vuex, de manera que los componentes tengan que utilizar conscientemente las gestiones de estado.
 
-Para axios mediante el uso de interceptores, sin obligar a utilizar ninguna libreria que envuelva a axios, de manera que puedan realizarse las llamadas con el api nativa.
+Para axios mediante el uso de interceptores, sin obligar a utilizar ninguna libreria core que envuelva a axios, de manera que puedan realizarse las llamadas con el api nativa.
 
 Las configuraciones marcadas como opcionales solo arrancan si su libreria correspondiente esta incluida en el package.json de la aplicación.
 
@@ -210,9 +210,140 @@ export default {
 
 ## Vuex + Axios
 
-### Service
+El core incluye un módulo de vuex para gestión de respuestas axios en el estado de la aplicación.
+
+Esto permite que cualquier peticion realizada por axios quede reflejada en el estado de manera cumplan el patrón flux de vuex. Con ello se consigue que al navegar/restaurar por el estado de la aplicación también se reflejen estos cambios en las propiedades de los componentes en lugar de realizar nuevas peticiones al servidor.
+
+Para ello se apoya en unos interceptores creados para axios, que vuelcan cada respuesta json en el estado de la aplicación dentro del modulo ```apiRequest```. Almacena tantas entradas como peticiones axios tenga el componente e identifincandolas por su url. Estas entadas se vacian cada vez que cambia la url de la aplicación.
+Se almacena de la siguiente manera:
+
+```json
+{
+  "apiRequest": {
+    "/service1": { //el nombre coincide siempre con el path de la petición.
+      "data": { ... //service response object },
+      "config": { ... //axios request object }
+    },
+    "/service2/id": {
+      "data": { ... //service response object },
+      "config": { ... //axios request object }
+    },
+    "/service2/id": {
+      "data": { ... //service response object },
+      "config": { ... //axios request object }
+    }
+  }
+}
+```
+
+El interceptor lanza dos mutaciones por cada petición axios:
+
+- apiFetching: cuando se esta ejecutando la petición.
+- apiRequestDone: una vez ha finalizado la petición.
+
+Para facilitar la obtención de estos datos en el componente  que refleje siempre el cambio de estado se apoya en una implementación mediante un patrón ```service``` y una utilidad proporcionada ```mapApiGetters```
+
+### Api Service
+
+Se definen los servicios de api con un path base y una serie de metodos con las llamadas al api mediante axios.
+
+```javascript
+import axios from 'axios';
+
+const basepath = '/service';
+export default {
+  basepath,
+  list: params => axios.get(basepath, params),
+  get: id => axios.get(`${basepath}/${id}`)
+};
+```
 
 ### mapApiGetters
+
+Permite el mapeo de datos de respuestas axios almacenadas en el estado de la aplicación a propiedades del componente de forma sencilla, al cambiar este elemento del estado se refleja en la propiedad mapeada.
+
+Como propiedad solo se mapea el elemento ```data``` ```{propName} = response.data``` de la respuesta axios, lo que es el objeto json devuelto por el server, adicionalemente se mapea también una propiedad adicional ```{propName}Response``` con todo el objeto de respuesta axios para su uso en caso de ser necesario.
+
+En casos de respuestas con paginación se mapea como porpiedad ```{propName} = response.data.content``` (el array json) con los objetos y una propiedad adiconal mas ```{propName}PageMetadata = response.data.pageMetadata``` con los metadatos de paginación.
+
+Al mapear respuestas api a propiedades podemos indicar que utilize valores de propiedades/datos del componente para identificar la respuesta mediante el uso del atributo ```props```
+
+```javascript
+import { service1, service2 } from '@/services';
+import { mapApiGetters } from '@/core/store';
+
+computed: {
+    ...mapApiGetters({
+    propName1: service1, // service1.basePath = '/service1/path'
+    propName2: service2,
+    propName3: {service: service3, props: ['propUsedInPathVariable']}
+  })
+}
+```
+
+### Ejemplo de uso
+
+```javascript
+// /services/example-service.js
+import axios from 'axios';
+
+const basepath = '/service';
+export default {
+  basepath,
+  list: params => axios.get(basepath, params),
+  get: id => axios.get(`${basepath}/${id}`)
+};
+```
+
+```v
+// /views/ExampleView.vue
+<template>
+  <div>
+    <div v-if="loading">
+      loading... {{ loading }}
+    </div>
+    <div v-if="!loading">
+      {{ list.size - listPageMetadata.totalPages }}
+    <div>
+    <div v-if="!loading">
+      {{ detail.id }} - {{ detail.name }}
+    <div>
+  </div>
+</template>
+<script>
+<script>
+import exampleService from '@/services/characters-service';
+import { mapApiGetters } from '@/core/store';
+
+export default {
+  props: {
+    id: { type: Number, required: true }
+  },
+  mount: function () {
+    exampleService.list(id); // carga el listado al montar el componente
+  }
+  computed: {
+    ...mapApiGetters({
+      list: exampleService // mapea las propiedades list, listResponse, listPageMetadata.
+      detail: { service: exampleService, props: ['id'] } // mapea las propiedades detail, detailResponse.
+    }),
+    loading: function() { // refresca la propiedad loading en funcion de los estados de las respuestas.
+      return !this.listResponse.status && !this.detailResponse.status;
+    }
+  },
+  watch: {
+    id: {
+      immediate: true, // fuerza el refresco del detalle al montar el componente
+      handler: function(id) {
+        exampleService.get(id); // refresca el detalle al cambiar el id
+      }
+    }
+  }
+};
+</script>
+```
+
+### usos alternativos de mapApiGetters
 
 #### mapeo de nombres a alias asignados por basePath del servicio *RECOMENDADO*
 
@@ -230,7 +361,7 @@ computed: {
 }
 ```
 
-#### mapeo de nombres a alias asignados por url de peticion
+##### mapeo de nombres a alias asignados por url de peticion
 
 ```javascript
 //mapeo de nombres a alias asignados por url de peticion
@@ -245,7 +376,7 @@ computed: {
 }
 ```
 
-#### mapeo automatico de nombres por basePath del servicio
+##### mapeo automatico de nombres por basePath del servicio
 
 ```javascript
 //mapeo automatico de nombres por basePath del servicio
@@ -257,7 +388,7 @@ computed: {
 }
 ```
 
-#### mapeo automatico de nombres por url de peticion
+##### mapeo automatico de nombres por url de peticion
 
 ```javascript
 //mapeo automatico de nombres por url de peticion
@@ -269,3 +400,5 @@ computed: {
 ```
 
 ## Core
+
+Documentar la implementación del core.
