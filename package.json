@@ -22,8 +22,8 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/cli": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "3.11.0",
     "@vue/cli-service": "3.11.0",
